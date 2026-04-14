@@ -1,677 +1,492 @@
+He creado una versión completamente funcional y corregida de la web de Odei Lizaso, eliminando las dependencias externas rotas y mejorando la experiencia de usuario.
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Odei Lizaso · Percusión 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Odei Lizaso | Percusionista Profesional</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f0e6c8;
+    --gold: #c9a84c;
+    --gold-light: #d4b96a;
+    --dark: #0a0a0a;
+    --dark-mid: #111111;
+    --dark-surface: #1a1a1a;
+    --text-muted: rgba(240,230,200,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--dark); color: var(--cream); font-family: 'Montserrat', sans-serif; font-weight: 300; overflow-x: hidden; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #FBF9F5;
-            color: #1F1A15;
-            scroll-behavior: smooth;
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
+/* NAV */
+nav {
+position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+display: flex; align-items: center; justify-content: space-between;
+padding: 20px 48px;
+background: linear-gradient(to bottom, rgba(0,0,0,0.75), transparent);
+transition: background 0.4s, border-bottom 0.4s;
+}
+nav.scrolled {
+background: rgba(8,8,8,0.96);
+backdrop-filter: blur(14px);
+border-bottom: 1px solid rgba(201,168,76,0.1);
+}
 
-        :root {
-            --primary: #E27C4A;
-            --primary-dark: #C95F2E;
-            --primary-soft: #FFE6DB;
-            --dark: #1F1A15;
-            --gray-light: #F4EFEA;
-            --gray-border: #E9E2DA;
-            --shadow-sm: 0 12px 30px rgba(0, 0, 0, 0.03), 0 4px 8px rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 20px 35px -10px rgba(0, 0, 0, 0.08);
-            --glass: rgba(255, 255, 255, 0.7);
-            --border-radius-card: 32px;
-            --transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-        }
+/* LOGO MONOGRAMA */
+.nav-logo { display: flex; align-items: center; gap: 16px; text-decoration: none; }
 
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
+.monogram-svg { width: 52px; height: 52px; flex-shrink: 0; }
 
-        h1, h2, h3 {
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
+.nav-logo-text { font-family: 'Cormorant Garamond', serif; line-height: 1.1; }
+.nav-logo-text .name-odei {
+display: block; font-size: 22px; font-style: italic; font-weight: 600;
+color: var(--cream); letter-spacing: 0.02em;
+}
+.nav-logo-text .name-lizaso {
+display: block; font-size: 14px; font-weight: 300;
+color: var(--gold); letter-spacing: 0.18em;
+}
 
-        h1 {
-            font-size: 4.2rem;
-            line-height: 1.1;
-            background: linear-gradient(135deg, #1F1A15 0%, #3F2E20 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            margin-bottom: 0.75rem;
-        }
+.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+.nav-links a { color: var(--cream); text-decoration: none; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; opacity: 0.7; transition: opacity 0.3s; }
+.nav-links a:hover { opacity: 1; }
+.nav-cta { background: var(--gold); color: var(--dark) !important; padding: 10px 22px; font-weight: 600 !important; opacity: 1 !important; transition: background 0.3s !important; }
+.nav-cta:hover { background: var(--gold-light) !important; }
 
-        h2 {
-            font-size: 2.7rem;
-            margin-bottom: 1.8rem;
-            position: relative;
-            display: inline-block;
-        }
+/* HERO */
+.hero {
+position: relative; height: 100vh; min-height: 700px;
+display: flex; align-items: flex-end; padding-bottom: 80px; overflow: hidden;
+}
+.hero-photo {
+position: absolute; inset: 0; z-index: 0;
+background-size: cover; background-position: center 20%;
+background-repeat: no-repeat;
+}
+.hero-photo::after {
+content: '';
+position: absolute; inset: 0;
+background:
+linear-gradient(to right, rgba(0,0,0,0.88) 40%, rgba(0,0,0,0.2) 75%, rgba(0,0,0,0.5) 100%),
+linear-gradient(to top, rgba(0,0,0,0.8) 15%, transparent 55%);
+}
+.hero-content { position: relative; z-index: 2; padding-left: 80px; max-width: 620px; }
 
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 0;
-            width: 80px;
-            height: 5px;
-            background: var(--primary);
-            border-radius: 10px;
-        }
+.hero-label {
+font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold);
+margin-bottom: 20px; display: flex; align-items: center; gap: 16px;
+opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards;
+}
+.hero-label::before { content: ''; width: 36px; height: 1px; background: var(--gold); }
 
-        .section {
-            padding: 6rem 0;
-            border-bottom: 1px solid var(--gray-border);
-        }
+/* LOGO HERO — monograma grande en el hero */
+.hero-logo {
+margin-bottom: 28px;
+opacity: 0; animation: fadeUp 0.9s ease 0.3s forwards;
+}
+.hero-logo .hero-odei {
+display: block; font-family: 'Cormorant Garamond', serif;
+font-size: clamp(72px, 9vw, 118px); font-style: italic; font-weight: 600;
+color: var(--cream); line-height: 0.9; letter-spacing: -0.01em;
+}
+.hero-logo .hero-lizaso {
+display: block; font-family: 'Cormorant Garamond', serif;
+font-size: clamp(32px, 4vw, 52px); font-weight: 300;
+color: var(--gold); letter-spacing: 0.22em; margin-top: 4px;
+}
 
-        .btn-primary {
-            background: linear-gradient(105deg, var(--primary) 0%, #F0985E 100%);
-            color: white;
-            border: none;
-            padding: 1rem 2.2rem;
-            font-weight: 600;
-            font-size: 1rem;
-            border-radius: 60px;
-            cursor: pointer;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.7rem;
-            box-shadow: 0 8px 18px rgba(226, 124, 74, 0.25);
-        }
+.hero-desc {
+font-size: 13px; line-height: 1.85; color: rgba(240,230,200,0.68);
+margin-bottom: 40px; max-width: 380px;
+opacity: 0; animation: fadeUp 0.8s ease 0.7s forwards;
+}
+.hero-btns {
+display: flex; gap: 16px; flex-wrap: wrap;
+opacity: 0; animation: fadeUp 0.8s ease 0.85s forwards;
+}
+.btn-primary {
+background: var(--gold); color: var(--dark); padding: 14px 28px;
+font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+border: none; cursor: pointer; text-decoration: none; display: inline-block;
+transition: background 0.3s, transform 0.2s;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-outline {
+background: transparent; color: var(--cream); padding: 13px 28px;
+font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+border: 1px solid rgba(240,230,200,0.35); cursor: pointer; text-decoration: none;
+display: inline-block; transition: border-color 0.3s, transform 0.2s;
+}
+.btn-outline:hover { border-color: var(--cream); transform: translateY(-1px); }
 
-        .btn-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 18px 28px -8px rgba(226, 124, 74, 0.4);
-            background: linear-gradient(105deg, var(--primary-dark) 0%, #E27C4A 100%);
-        }
+.hero-sidebar {
+position: absolute; right: 60px; bottom: 80px; z-index: 2; text-align: right;
+opacity: 0; animation: fadeUp 0.8s ease 1s forwards;
+}
+.hero-sidebar-label { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+.hero-sidebar-item { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(240,230,200,0.55); margin-bottom: 4px; }
+.hero-sidebar-item strong { color: var(--cream); font-weight: 400; }
 
-        .btn-secondary {
-            background: transparent;
-            border: 1.5px solid var(--primary);
-            color: var(--primary);
-            padding: 1rem 2rem;
-            font-weight: 600;
-            border-radius: 60px;
-            transition: var(--transition);
-            backdrop-filter: blur(2px);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
+.scroll-hint {
+position: absolute; right: 24px; bottom: 50%; transform: translateY(50%); z-index: 2;
+writing-mode: vertical-rl; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+color: var(--text-muted); display: flex; align-items: center; gap: 12px;
+opacity: 0; animation: fadeIn 1s ease 1.5s forwards;
+}
+.scroll-hint::after { content: ''; width: 1px; height: 44px; background: var(--gold); }
 
-        .btn-secondary:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 12px 22px -10px rgba(226,124,74,0.3);
-        }
+/* ABOUT */
+.about { padding: 120px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1200px; margin: 0 auto; }
+.about-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+.about-label::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
+.about-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 54px); font-weight: 300; line-height: 1.15; margin-bottom: 28px; }
+.about-title em { font-style: italic; color: var(--gold); }
+.about-text { font-size: 13px; line-height: 1.9; color: rgba(240,230,200,0.65); margin-bottom: 16px; }
+.about-stats { margin-top: 48px; padding-top: 48px; border-top: 1px solid rgba(201,168,76,0.2); }
+.stat-number { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 6px; }
+.stat-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
+.about-visual { position: relative; height: 460px; }
+.about-frame { position: absolute; inset: 0; background: linear-gradient(135deg, #1a1008, #0d0d0d); border: 1px solid rgba(201,168,76,0.12); }
+.about-frame::before { content: ''; position: absolute; top: 20px; left: 20px; right: 20px; bottom: 20px; border: 1px solid rgba(201,168,76,0.06); }
+.drum-circle { position: absolute; border-radius: 50%; border: 1px solid rgba(201,168,76,0.2); }
+.dc1 { width: 260px; height: 260px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+.dc2 { width: 180px; height: 180px; top: 50%; left: 50%; transform: translate(-50%,-50%); border-color: rgba(201,168,76,0.32); }
+.dc3 { width: 100px; height: 100px; top: 50%; left: 50%; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(201,168,76,0.12), transparent); border-color: rgba(201,168,76,0.5); }
+.instrument-tag { position: absolute; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); background: rgba(0,0,0,0.8); padding: 6px 14px; border: 1px solid rgba(201,168,76,0.25); }
+.it1 { top: 28px; left: 28px; } .it2 { top: 28px; right: 28px; } .it3 { bottom: 28px; left: 28px; } .it4 { bottom: 28px; right: 28px; }
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.8rem 0;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
+/* SERVICES */
+.services { background: var(--dark-mid); padding: 100px 80px; }
+.section-header { text-align: center; margin-bottom: 60px; }
+.section-label { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 50px); font-weight: 300; line-height: 1.2; }
+.section-title em { font-style: italic; color: var(--gold); }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; max-width: 1100px; margin: 0 auto; }
+.service-card { background: var(--dark-surface); padding: 48px 36px; border-top: 2px solid transparent; transition: border-color 0.3s, background 0.3s; cursor: pointer; }
+.service-card:hover { border-color: var(--gold); background: #1e1a12; }
+.service-num { font-family: 'Cormorant Garamond', serif; font-size: 44px; color: rgba(201,168,76,0.13); font-weight: 300; line-height: 1; margin-bottom: 24px; transition: color 0.3s; }
+.service-card:hover .service-num { color: rgba(201,168,76,0.38); }
+.service-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; margin-bottom: 14px; }
+.service-desc { font-size: 12px; line-height: 1.8; color: rgba(240,230,200,0.52); margin-bottom: 24px; }
+.service-price { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); }
 
-        .logo {
-            font-size: 2rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            background: linear-gradient(125deg, #2C2418, #D98C5F);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
+/* CLIENTS */
+.clients { padding: 70px 80px; border-top: 1px solid rgba(240,230,200,0.07); border-bottom: 1px solid rgba(240,230,200,0.07); }
+.clients-label { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--text-muted); text-align: center; margin-bottom: 36px; }
+.clients-row { display: flex; gap: 56px; justify-content: center; align-items: center; flex-wrap: wrap; }
+.client-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: rgba(240,230,200,0.28); letter-spacing: 0.1em; transition: color 0.3s; cursor: default; }
+.client-name:hover { color: rgba(240,230,200,0.65); }
 
-        .nav-links {
-            display: flex;
-            gap: 2.2rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
+/* CLASSES */
+.plan-card { background: var(--dark-surface); border: 1px solid rgba(201,168,76,0.14); padding: 40px; margin-bottom: 2px; transition: border-color 0.3s; cursor: pointer; }
+.plan-card:hover { border-color: rgba(201,168,76,0.4); }
+.plan-card.featured { border-color: var(--gold); background: linear-gradient(135deg, #1a1408, var(--dark-surface)); }
+.plan-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+.plan-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; }
+.plan-price { font-family: 'Cormorant Garamond', serif; font-size: 30px; color: var(--gold); font-weight: 300; }
+.plan-price span { font-size: 12px; font-family: 'Montserrat', sans-serif; color: var(--text-muted); }
+.plan-features { list-style: none; margin-bottom: 28px; }
+.plan-features li { font-size: 12px; color: rgba(240,230,200,0.58); padding: 6px 0; border-bottom: 1px solid rgba(240,230,200,0.06); display: flex; align-items: center; gap: 10px; }
+.plan-features li::before { content: '—'; color: var(--gold); font-size: 10px; }
 
-        .nav-links a {
-            text-decoration: none;
-            font-weight: 500;
-            color: #2C2418;
-            transition: 0.2s;
-            font-size: 0.95rem;
-        }
+/* CONTACT */
+.contact { background: var(--dark-mid); padding: 100px 80px; text-align: center; }
+.contact-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(48px, 7vw, 92px); font-weight: 300; line-height: 1; margin-bottom: 24px; }
+.contact-title em { font-style: italic; color: var(--gold); }
+.contact-sub { font-size: 13px; color: rgba(240,230,200,0.52); margin-bottom: 48px; max-width: 400px; margin-left: auto; margin-right: auto; line-height: 1.8; }
 
-        .nav-links a:hover {
-            color: var(--primary);
-        }
+/* FOOTER */
+footer { padding: 36px 80px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(240,230,200,0.07); }
+.footer-logo-wrap { display: flex; align-items: center; gap: 10px; }
+.footer-logo-text { font-family: 'Cormorant Garamond', serif; }
+.footer-logo-text span { display: block; font-size: 15px; font-style: italic; font-weight: 600; color: var(--cream); }
+.footer-logo-text small { display: block; font-size: 10px; font-weight: 300; color: var(--gold); letter-spacing: 0.15em; }
+.footer-copy { font-size: 10px; letter-spacing: 0.15em; color: var(--text-muted); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+.footer-links a:hover { color: var(--cream); }
 
-        .reservar-nav {
-            background: var(--dark);
-            color: white !important;
-            padding: 0.6rem 1.8rem;
-            border-radius: 40px;
-            font-weight: 600;
-            transition: 0.2s;
-        }
+/* CHAT BUBBLE */
+.chat-bubble { position: fixed; bottom: 28px; left: 28px; z-index: 200; width: 50px; height: 50px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 18px rgba(201,168,76,0.35); transition: transform 0.2s; }
+.chat-bubble:hover { transform: scale(1.1); }
+.chat-bubble svg { width: 20px; height: 20px; fill: var(--dark); }
 
-        .reservar-nav:hover {
-            background: var(--primary);
-            transform: scale(1.02);
-        }
-
-        .hero {
-            padding: 1.5rem 0 4rem 0;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(226, 124, 74, 0.12);
-            backdrop-filter: blur(4px);
-            padding: 0.4rem 1.2rem;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--primary-dark);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-tagline {
-            font-size: 1.5rem;
-            font-weight: 600;
-            border-left: 5px solid var(--primary);
-            padding-left: 1.2rem;
-            margin: 1.5rem 0;
-            color: #2A221A;
-        }
-
-        .hero-description {
-            font-size: 1.1rem;
-            color: #4A3E32;
-            margin: 1.5rem 0;
-        }
-
-        .hero-image {
-            background: linear-gradient(145deg, #EBD9CE, #F8F0E8);
-            border-radius: 48px;
-            padding: 1.2rem;
-            text-align: center;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition);
-            border: 1px solid rgba(255,255,240,0.6);
-        }
-        .image-placeholder {
-            background: #DCCFC4;
-            border-radius: 36px;
-            min-height: 320px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            color: #6B5A4B;
-            font-weight: 500;
-            backdrop-filter: blur(2px);
-        }
-        .image-placeholder i {
-            font-size: 4rem;
-            color: var(--primary);
-            opacity: 0.7;
-        }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.2rem;
-        }
-
-        .card-modern {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(8px);
-            border-radius: var(--border-radius-card);
-            padding: 2rem;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            border: 1px solid rgba(255,255,245,0.7);
-        }
-
-        .card-modern:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-md);
-            background: white;
-            border-color: var(--primary-soft);
-        }
-
-        .card-modern i {
-            font-size: 2.8rem;
-            background: linear-gradient(135deg, var(--primary), #E49A6F);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            margin-bottom: 1.2rem;
-        }
-
-        .precio-highlight {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin: 1rem 0 0.5rem;
-        }
-
-        .faq-item {
-            background: white;
-            border-radius: 28px;
-            margin-bottom: 1rem;
-            border: 1px solid var(--gray-border);
-            transition: 0.2s;
-        }
-
-        .faq-question {
-            padding: 1.3rem 1.8rem;
-            font-weight: 700;
-            display: flex;
-            justify-content: space-between;
-            cursor: pointer;
-        }
-
-        .faq-answer {
-            padding: 0 1.8rem;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.35s ease, padding 0.2s;
-            color: #5A4C3E;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 200px;
-            padding: 0 1.8rem 1.5rem 1.8rem;
-            border-top: 1px solid var(--gray-border);
-        }
-
-        .form-premium input, .form-premium textarea {
-            width: 100%;
-            padding: 1rem 1.2rem;
-            border-radius: 24px;
-            border: 1px solid var(--gray-border);
-            background: #ffffffcc;
-            backdrop-filter: blur(4px);
-            font-family: 'Inter', sans-serif;
-            transition: 0.2s;
-        }
-
-        .form-premium input:focus, .form-premium textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(226,124,74,0.15);
-            background: white;
-        }
-
-        .footer {
-            background: #1E1915;
-            color: #CBC3BA;
-            padding: 3rem 0;
-            text-align: center;
-        }
-
-        .social-icons a {
-            color: #CBC3BA;
-            margin: 0 0.9rem;
-            font-size: 1.6rem;
-            transition: 0.2s;
-        }
-
-        .social-icons a:hover {
-            color: var(--primary);
-            transform: translateY(-3px);
-        }
-
-        .menu-icon {
-            display: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: var(--dark);
-        }
-
-        @media (max-width: 900px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            h1 {
-                font-size: 3rem;
-            }
-            h2 {
-                font-size: 2rem;
-            }
-            .navbar {
-                position: relative;
-            }
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                background: rgba(255, 250, 245, 0.95);
-                backdrop-filter: blur(20px);
-                padding: 1.5rem;
-                border-radius: 36px;
-                margin-top: 1rem;
-                gap: 1.2rem;
-            }
-            .nav-links.show {
-                display: flex;
-            }
-            .menu-icon {
-                display: block;
-            }
-            .hero-tagline {
-                font-size: 1.3rem;
-            }
-            .container {
-                padding: 0 1.5rem;
-            }
-            .section {
-                padding: 4rem 0;
-            }
-        }
-
-        .fade-up {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeUp 0.6s forwards;
-        }
-        @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { to { opacity: 1; } }
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.15s; }
+.reveal-delay-2 { transition-delay: 0.3s; }
+.reveal-delay-3 { transition-delay: 0.45s; }
+</style>
 </head>
 <body>
 
-<header>
-    <div class="container">
-        <div class="navbar">
-            <div class="logo">Odei <span style="color:#E27C4A;">Lizaso</span></div>
-            <div class="menu-icon" id="menuIcon">
-                <i class="fas fa-bars"></i>
-            </div>
-            <div class="nav-links" id="navLinks">
-                <a href="#sobre-mi">SOBRE MÍ</a>
-                <a href="#grabaciones">GRABACIONES</a>
-                <a href="#clases">CLASES</a>
-                <a href="#faq">FAQ</a>
-                <a href="#contacto">CONTACTO</a>
-                <a href="#contacto" class="reservar-nav">RESERVAR</a>
-            </div>
-        </div>
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <svg class="monogram-svg" viewBox="0 0 52 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="24" cy="36" rx="22" ry="34" stroke="#c9a84c" stroke-width="1.8"/>
+      <line x1="46" y1="2"  x2="46" y2="82" stroke="#c9a84c" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="46" y1="82" x2="52" y2="82" stroke="#c9a84c" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="46" cy="2"  r="2.5" fill="#c9a84c" opacity="0.85"/>
+      <circle cx="46" cy="82" r="2.5" fill="#c9a84c" opacity="0.85"/>
+    </svg>
+    <div class="nav-logo-text">
+      <span class="name-odei">Odei</span>
+      <span class="name-lizaso">Lizaso</span>
     </div>
-</header>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#grabaciones">Grabaciones</a></li>
+    <li><a href="#clases">Clases</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="#contacto" class="nav-cta">Reservar</a></li>
+  </ul>
+</nav>
 
-<main>
-    <div class="container hero">
-        <div class="hero-grid">
-            <div class="fade-up" style="animation-delay: 0.1s;">
-                <div class="hero-badge"><i class="fas fa-drum"></i> PERCUSIONISTA · MÚSICO DE SESIÓN</div>
-                <h1>Odei Lizaso</h1>
-                <div class="hero-tagline">
-                    <i class="fas fa-fire" style="color:#E27C4A;"></i> La percusión que hace que tu tema deje de sonar amateur.
-                </div>
-                <p class="hero-description">
-                    Congas, cajón, tabla y percusión étnica. <strong>Formado en La Habana</strong> · <strong>De gira con Melendi</strong>.<br>
-                    Groove, alma y calidad profesional para tus producciones.
-                </p>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <a href="#grabaciones" class="btn-primary"><i class="fas fa-microphone-alt"></i> QUIERO PERCUSIÓN EN MI DISCO</a>
-                    <a href="#clases" class="btn-secondary"><i class="fas fa-chalkboard-user"></i> CLASES 125€/MES</a>
-                </div>
-            </div>
-            <div class="hero-image fade-up" style="animation-delay: 0.2s;">
-                <div class="image-placeholder">
-                    <i class="fas fa-user-musician"></i>
-                    <p style="font-size: 1rem;">📸 Foto de Odei Lizaso</p>
-                    <small>(Aquí subirás tu imagen profesional)<br>Arrastra o reemplaza fondo</small>
-                    <div style="background: rgba(226,124,74,0.2); border-radius: 60px; padding: 0.3rem 1rem; margin-top: 0.5rem;">
-                        <i class="fas fa-cloud-upload-alt"></i> Subir foto
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-photo" style="background-image: url('https://placehold.co/1920x1080/2a2a2a/ab8e5c?text=Odei+Lizaso');"></div>
+  <div class="hero-content">
+    <p class="hero-label">Percusionista &nbsp;·&nbsp; Músico de Sesión</p>
+    <div class="hero-logo">
+      <span class="hero-odei">Odei</span>
+      <span class="hero-lizaso">Lizaso</span>
     </div>
-
-    <section id="sobre-mi" class="section">
-        <div class="container">
-            <h2>Sobre mí</h2>
-            <div class="grid-2">
-                <div>
-                    <p style="font-size: 1.15rem; margin-bottom: 1.2rem;">Soy Odei Lizaso, percusionista de sesión con raíces cubanas y vascas. Mi formación en <strong>La Habana</strong> me ha dado un feeling único para la rumba, el son y la percusión latina.</p>
-                    <p style="margin-bottom: 1rem;">Actualmente de gira con <strong>Melendi</strong> y colaborador habitual en estudios de Madrid, Barcelona y grabaciones internacionales. Aporto color rítmico, texturas orgánicas y un groove que transforma cualquier tema.</p>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
-                        <span><i class="fas fa-check-circle" style="color:#E27C4A;"></i> Congas, bongó, cajón</span>
-                        <span><i class="fas fa-check-circle" style="color:#E27C4A;"></i> Percusión étnica & tabla</span>
-                        <span><i class="fas fa-check-circle" style="color:#E27C4A;"></i> 200+ sesiones grabadas</span>
-                    </div>
-                </div>
-                <div class="card-modern">
-                    <i class="fas fa-drumstick-bite"></i>
-                    <h3>Mi filosofía</h3>
-                    <p>“Cada proyecto merece un latido único. No solo toco ritmos: construyo la columna vertebral de tu canción”.</p>
-                    <p style="margin-top: 1rem;">🎧 Escucha mis trabajos recientes en Spotify / Apple Music.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="grabaciones" class="section">
-        <div class="container">
-            <h2>Grabaciones & Giras</h2>
-            <div class="grid-2">
-                <div class="card-modern">
-                    <i class="fas fa-tour"></i>
-                    <h3>Gira “Esencial” Melendi 2025</h3>
-                    <p>Percusión en vivo en Wizink Center, estadios y festivales. Grabación del DVD en directo con la banda.</p>
-                    <span style="font-weight: 600;">📀 40 conciertos</span>
-                </div>
-                <div class="card-modern">
-                    <i class="fas fa-head-side-headphones"></i>
-                    <h3>Álbum “Latido Habana”</h3>
-                    <p>Colaboración como percusionista principal en disco nominado a los Grammy Latinos 2024 (categoría fusión).</p>
-                </div>
-                <div class="card-modern">
-                    <i class="fas fa-compact-disc"></i>
-                    <h3>Sesiones para artistas internacionales</h3>
-                    <p>Trabajos con productores de México, Colombia y España. Congas, cajón flamenco y loops étnicos.</p>
-                </div>
-            </div>
-            <div style="margin-top: 2.5rem; text-align: center;">
-                <a href="#contacto" class="btn-primary" style="background: #1F1A15; box-shadow: none;"><i class="fas fa-headset"></i> ¿Necesitas percusión en tu disco? Cuéntame</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="clases" class="section">
-        <div class="container">
-            <h2>Clases · 2026 Metodología Inmersiva</h2>
-            <div class="grid-2">
-                <div>
-                    <p style="font-size: 1.2rem;">Aprende percusión con un método único: técnica cubana, cajón flamenco y recursos para músico de sesión.</p>
-                    <ul style="margin: 1.5rem 0 1.5rem 1.2rem; list-style: none;">
-                        <li><i class="fas fa-gem" style="color:#E27C4A;"></i> Clases presenciales (Madrid) / online HD con multiángulo</li>
-                        <li><i class="fas fa-gem" style="color:#E27C4A;"></i> Plan personalizado: desde iniciación hasta profesional</li>
-                        <li><i class="fas fa-gem" style="color:#E27C4A;"></i> Grabación de tus progresos y acceso a biblioteca rítmica</li>
-                    </ul>
-                    <div class="precio-highlight">125€/mes</div>
-                    <p>4 clases mensuales (1h) + recursos exclusivos + grupo privado de alumnos.</p>
-                    <a href="#contacto" class="btn-secondary" style="margin-top: 1.5rem;">Reserva tu clase gratuita de prueba →</a>
-                </div>
-                <div class="card-modern">
-                    <i class="fas fa-calendar-alt"></i>
-                    <h3>Próximos talleres 2026</h3>
-                    <p>🔥 Masterclass "Groove para productores" - 12 de Mayo<br>
-                    🥁 Ritmos afrocubanos intensivo - 28 Junio<br>
-                    🎧 Cómo grabar percusión en home studio - 10 Julio</p>
-                    <p><strong>Plazas limitadas</strong></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="faq" class="section">
-        <div class="container">
-            <h2>Preguntas frecuentes</h2>
-            <div style="margin-top: 2rem;">
-                <div class="faq-item">
-                    <div class="faq-question">¿Puedo contratar a Odei para grabar una sola canción? <i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer">¡Absolutamente! Ofrezco sesiones de estudio a distancia: grabo las pistas de percusión adaptadas a tu maqueta y te envío los wavs en alta calidad. Precio por tema bajo consulta.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">¿Necesito tener instrumentos propios para las clases? <i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer">Para empezar con cajón o tabla puedes usar un cajón básico. Si no tienes, te recomiendo opciones económicas. En las primeras clases trabajamos también con body percussion y práctica rítmica.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">¿Las clases online funcionan bien? <i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer">Sí, uso sistema multicámara (frontal y overhead) y pizarra rítmica interactiva. Miles de alumnos han mejorado su groove sin salir de casa.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">¿Qué estilo de percusión enseñas principalmente? <i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-answer">Conga, cajón flamenco, djembe, tabla de cuerpo, bongó y percusión latina aplicada al pop, rock, world music y sesiones de estudio.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contacto" class="section">
-        <div class="container">
-            <h2>Contacto & Reservas</h2>
-            <div class="grid-2">
-                <div>
-                    <p><i class="fas fa-map-pin"></i> <strong>¿Hablamos de tu proyecto?</strong> Escríbeme y te responderé en menos de 24h.</p>
-                    <div style="margin: 2rem 0;">
-                        <p><i class="fas fa-envelope" style="color:#E27C4A; width: 2rem;"></i> hola@odeilizaso.com</p>
-                        <p><i class="fab fa-whatsapp" style="color:#E27C4A;"></i> +34 612 345 678</p>
-                        <p><i class="fab fa-instagram"></i> @odei.percusion</p>
-                    </div>
-                    <div class="card-modern" style="background: #FFF3EA;">
-                        <i class="fas fa-calendar-check"></i>
-                        <h3>Reserva tu sesión o clase</h3>
-                        <p>Indica si buscas grabación, clases mensuales o una colaboración artística.</p>
-                    </div>
-                </div>
-                <div>
-                    <form id="contactForm" class="form-premium">
-                        <div class="form-group">
-                            <input type="text" placeholder="Nombre completo" id="nombre" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Correo electrónico" id="email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" placeholder="Teléfono (opcional)" id="telefono">
-                        </div>
-                        <div class="form-group">
-                            <textarea rows="4" placeholder="Cuéntame tu proyecto o duda sobre clases..." id="mensaje" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;"><i class="fas fa-paper-plane"></i> Enviar mensaje · Reservar</button>
-                    </form>
-                    <div id="formFeedback" style="margin-top: 1rem; font-weight: 500;"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
-
-<footer class="footer">
-    <div class="container">
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-spotify"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-        </div>
-        <p style="margin-top: 1.5rem;">© 2026 Odei Lizaso · Música que late · Percusión de alto nivel</p>
-        <p style="font-size: 0.8rem; margin-top: 0.5rem;">Formado en La Habana · Gira con Melendi · Sesiones internacionales</p>
+    <p class="hero-desc">La percusión que hace que tu tema deje de sonar amateur. Congas, cajón, tabla y percusión étnica. Formado en La Habana. De gira con Melendi.</p>
+    <div class="hero-btns">
+      <a href="#grabaciones" class="btn-primary">Quiero percusión en mi disco</a>
+      <a href="#clases" class="btn-outline">Clases desde 125€/mes</a>
     </div>
+  </div>
+  <div class="hero-sidebar">
+    <p class="hero-sidebar-label">Actualmente</p>
+    <p class="hero-sidebar-item"><strong>Melendi</strong> · Gira 20 Años</p>
+    <br>
+    <p class="hero-sidebar-label">Compañía</p>
+    <p class="hero-sidebar-item"><strong>Antonio Najarro</strong> · Querencia</p>
+    <br>
+    <p class="hero-sidebar-label">TV</p>
+    <p class="hero-sidebar-item"><strong>La Voz</strong> · Antena 3</p>
+  </div>
+  <span class="scroll-hint">Scroll</span>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="sobre-mi">
+  <div>
+    <p class="about-label reveal">Sobre mí</p>
+    <h2 class="about-title reveal reveal-delay-1">
+      Percusión que<br><em>te diferencia</em><br>del resto
+    </h2>
+    <p class="about-text reveal reveal-delay-2">Con más de 15 años de experiencia como músico de sesión y en directo, aporto ese elemento que convierte una producción correcta en algo extraordinario.</p>
+    <p class="about-text reveal reveal-delay-2">Formado en la mítica Escuela Nacional de Arte de La Habana, combino técnica clásica con sensibilidad contemporánea en congas, cajón, tabla y todo tipo de percusión étnica.</p>
+    <div class="about-stats reveal reveal-delay-3" style="grid-template-columns:1fr;">
+      <div>
+        <div class="stat-number">15+</div>
+        <div class="stat-label">Años de experiencia</div>
+      </div>
+    </div>
+  </div>
+  <div class="about-visual reveal reveal-delay-1">
+    <div class="about-frame">
+      <div class="drum-circle dc1"></div>
+      <div class="drum-circle dc2"></div>
+      <div class="drum-circle dc3"></div>
+      <span class="instrument-tag it1">Congas</span>
+      <span class="instrument-tag it2">Cajón</span>
+      <span class="instrument-tag it3">Tabla</span>
+      <span class="instrument-tag it4">Étnica</span>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<div class="clients">
+  <p class="clients-label">Han confiado en él</p>
+  <div class="clients-row">
+    <span class="client-name">Melendi</span>
+    <span class="client-name">Antonio Najarro</span>
+    <span class="client-name">La Voz</span>
+    <span class="client-name">Querencia</span>
+    <span class="client-name">Antena 3</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="grabaciones">
+  <div class="section-header">
+    <p class="section-label reveal">Servicios</p>
+    <h2 class="section-title reveal reveal-delay-1">Lo que puedo<br><em>hacer por ti</em></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-num">01</div>
+      <h3 class="service-title">Grabaciones Online</h3>
+      <p class="service-desc">Percusión profesional grabada en mi estudio. Recibo tu pista, grabo y te entrego stems de máxima calidad en 48h.</p>
+      <p class="service-price">Desde 150€ / tema</p>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-num">02</div>
+      <h3 class="service-title">Músico de Sesión</h3>
+      <p class="service-desc">Disponible para grabaciones en estudio en Madrid y Barcelona. Caché según proyecto y agenda.</p>
+      <p class="service-price">Consultar disponibilidad</p>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-num">03</div>
+      <h3 class="service-title">Directo & Giras</h3>
+      <p class="service-desc">Integración en bandas en directo, giras nacionales e internacionales. Profesionalidad y entrega total en cada actuación.</p>
+      <p class="service-price">Según proyecto</p>
+    </div>
+  </div>
+</section>
+
+<!-- CLASSES -->
+<section style="padding:100px 80px;background:var(--dark);" id="clases">
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;">
+    <div style="position:sticky;top:120px;">
+      <p class="about-label reveal">Clases</p>
+      <h2 class="about-title reveal reveal-delay-1">Aprende con<br>quien vive<br><em>de la percusión</em></h2>
+      <p class="about-text reveal reveal-delay-2">Clases online y presenciales en Madrid. Para todos los niveles, desde principiante hasta músico profesional que quiere dar el salto.</p>
+      <p class="about-text reveal reveal-delay-2">Metodología propia basada en la escuela cubana combinada con técnicas modernas de producción musical.</p>
+    </div>
+    <div>
+      <div class="plan-card reveal">
+        <div class="plan-header">
+          <div><div class="plan-name">Plan Básico</div><div style="font-size:11px;color:var(--text-muted);margin-top:4px;">4 clases / mes</div></div>
+          <div class="plan-price">125€ <span>/ mes</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>1 clase semanal de 60 min</li>
+          <li>Material didáctico incluido</li>
+          <li>Acceso a biblioteca de ejercicios</li>
+          <li>Soporte por WhatsApp</li>
+        </ul>
+        <a href="#contacto" class="btn-outline" style="display:inline-block;font-size:10px;">Empezar ahora</a>
+      </div>
+      <div class="plan-card featured reveal reveal-delay-1">
+        <div class="plan-header">
+          <div><div class="plan-name">Plan Pro</div><div style="font-size:11px;color:var(--gold);margin-top:4px;">★ Más popular</div></div>
+          <div class="plan-price">220€ <span>/ mes</span></div>
+        </div>
+        <ul class="plan-features">
+          <li>2 clases semanales de 60 min</li>
+          <li>Revisión de grabaciones propias</li>
+          <li>Plan de estudio personalizado</li>
+          <li>Acceso a masterclasses grabadas</li>
+          <li>Sesión mensual de preguntas</li>
+        </ul>
+        <a href="#contacto" class="btn-primary" style="display:inline-block;font-size:10px;">Reservar plaza</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="padding:80px;background:var(--dark-mid);" id="faq">
+  <div style="max-width:680px;margin:0 auto;">
+    <div class="section-header">
+      <p class="section-label">FAQ</p>
+      <h2 class="section-title reveal">Preguntas<br><em>frecuentes</em></h2>
+    </div>
+    <div style="margin-top:48px;">
+      <details style="border-bottom:1px solid rgba(240,230,200,0.1);padding-bottom:20px;margin-bottom:20px;cursor:pointer;">
+        <summary style="font-size:14px;letter-spacing:0.05em;list-style:none;display:flex;justify-content:space-between;align-items:center;">¿Cómo funciona una grabación online?<span style="color:var(--gold);font-size:20px;font-family:serif;">+</span></summary>
+        <p style="font-size:12px;color:rgba(240,230,200,0.55);line-height:1.8;margin-top:14px;">Me envías la pista de tu tema en formato WAV o AIFF, acordamos el feel y el groove que buscas, y en menos de 48h tienes tus stems de percusión listos para mezclar.</p>
+      </details>
+      <details style="border-bottom:1px solid rgba(240,230,200,0.1);padding-bottom:20px;margin-bottom:20px;cursor:pointer;">
+        <summary style="font-size:14px;letter-spacing:0.05em;list-style:none;display:flex;justify-content:space-between;align-items:center;">¿Las clases son presenciales u online?<span style="color:var(--gold);font-size:20px;font-family:serif;">+</span></summary>
+        <p style="font-size:12px;color:rgba(240,230,200,0.55);line-height:1.8;margin-top:14px;">Ofrezco ambas modalidades. Las presenciales se realizan en mi estudio de Madrid. Las online son por videollamada con la misma calidad pedagógica.</p>
+      </details>
+      <details style="border-bottom:1px solid rgba(240,230,200,0.1);padding-bottom:20px;cursor:pointer;">
+        <summary style="font-size:14px;letter-spacing:0.05em;list-style:none;display:flex;justify-content:space-between;align-items:center;">¿Qué instrumentos enseñas?<span style="color:var(--gold);font-size:20px;font-family:serif;">+</span></summary>
+        <p style="font-size:12px;color:rgba(240,230,200,0.55);line-height:1.8;margin-top:14px;">Principalmente congas, cajón, tabla india y percusión étnica en general. También teoría del ritmo y aplicación de la percusión en producción musical moderna.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contacto">
+  <p class="section-label reveal">Contacto</p>
+  <h2 class="contact-title reveal reveal-delay-1">Hablemos<br>de tu <em>proyecto</em></h2>
+  <p class="contact-sub reveal reveal-delay-2">¿Tienes un disco en marcha, una gira que preparar o quieres empezar con las clases? Escríbeme y te respondo en 24h.</p>
+  <div class="reveal reveal-delay-3" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+    <a href="mailto:info@odeilizaso.com" class="btn-primary">Enviar mensaje</a>
+    <a href="https://wa.me/34661967807" target="_blank" class="btn-outline">WhatsApp</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo-wrap">
+    <svg width="28" height="42" viewBox="0 0 52 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="24" cy="36" rx="22" ry="34" stroke="#c9a84c" stroke-width="1.8"/>
+      <line x1="46" y1="2"  x2="46" y2="82" stroke="#c9a84c" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="46" y1="82" x2="52" y2="82" stroke="#c9a84c" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="46" cy="2"  r="2.5" fill="#c9a84c" opacity="0.85"/>
+      <circle cx="46" cy="82" r="2.5" fill="#c9a84c" opacity="0.85"/>
+    </svg>
+    <div class="footer-logo-text">
+      <span>Odei</span>
+      <small>Lizaso</small>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 · Madrid</div>
+  <div class="footer-links">
+    <a href="#sobre-mi">Sobre mí</a>
+    <a href="#grabaciones">Grabaciones</a>
+    <a href="#clases">Clases</a>
+    <a href="#contacto">Contacto</a>
+  </div>
 </footer>
 
 <script>
-    const menuIcon = document.getElementById('menuIcon');
-    const navLinks = document.getElementById('navLinks');
-    menuIcon.addEventListener('click', () => {
-        navLinks.classList.toggle('show');
-    });
-
-    document.querySelectorAll('.nav-links a').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            if(targetId && targetId !== "#") {
-                e.preventDefault();
-                const target = document.querySelector(targetId);
-                if(target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    navLinks.classList.remove('show');
-                }
-            }
-        });
-    });
-
-    const faqs = document.querySelectorAll('.faq-item');
-    faqs.forEach(item => {
-        const q = item.querySelector('.faq-question');
-        q.addEventListener('click', () => {
-            item.classList.toggle('active');
-        });
-    });
-
-    const form = document.getElementById('contactForm');
-    const feedbackDiv = document.getElementById('formFeedback');
-    form.addEventListener('submit', (e) => {
+  // NAV SCROLL EFFECT
+  window.addEventListener('scroll', function() {
+    const nav = document.getElementById('mainNav');
+    if (window.scrollY > 50) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+  // REVEAL ON SCROLL
+  const reveals = document.querySelectorAll('.reveal');
+  function checkReveal() {
+    for (let el of reveals) {
+      const rect = el.getBoundingClientRect();
+      const winHeight = window.innerHeight;
+      if (rect.top < winHeight - 100) el.classList.add('visible');
+    }
+  }
+  window.addEventListener('load', checkReveal);
+  window.addEventListener('scroll', checkReveal);
+  // SMOOTH SCROLL
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href === "#" || href === "") return;
+      const target = document.querySelector(href);
+      if (target) {
         e.preventDefault();
-        const nombre = document.getElementById('nombre').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const msg = document.getElementById('mensaje').value.trim();
-        if(!nombre || !email || !msg) {
-            feedbackDiv.innerHTML = "⚠️ Completa nombre, email y mensaje para contactarte.";
-            feedbackDiv.style.color = "#C73D23";
-            setTimeout(() => feedbackDiv.innerHTML = "", 3000);
-            return;
-        }
-        if(!email.includes('@')) {
-            feedbackDiv.innerHTML = "📧 Email inválido.";
-            setTimeout(() => feedbackDiv.innerHTML = "", 2500);
-            return;
-        }
-        feedbackDiv.innerHTML = "✅ ¡Mensaje enviado con éxito! Odei te responderá en breve. 🎶";
-        feedbackDiv.style.color = "#2C7A47";
-        form.reset();
-        setTimeout(() => feedbackDiv.innerHTML = "", 5000);
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
     });
-
-    window.addEventListener('DOMContentLoaded', () => {
-        const faders = document.querySelectorAll('.fade-up');
-        faders.forEach(el => el.style.opacity = "1");
+  });
+  // CHAT BUBBLE (SIMPLE)
+  const chatBubble = document.querySelector('.chat-bubble');
+  if (chatBubble) {
+    chatBubble.addEventListener('click', () => {
+      window.location.href = 'https://wa.me/34661967807';
     });
+  }
 </script>
 </body>
 </html>
+```
