@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Odei Lizaso · Percusión profesional</title>
+  <title>Odei Lizaso · Tienda de percusión profesional</title>
   <!-- Google Fonts + Font Awesome -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -64,13 +64,13 @@
     }
 
     h1 {
-      font-size: 4.2rem;
-      line-height: 1.1;
+      font-size: 4.8rem;
+      line-height: 1.05;
       margin-bottom: 1rem;
     }
 
     h2 {
-      font-size: 2.6rem;
+      font-size: 2.8rem;
       margin-bottom: 1.8rem;
       position: relative;
       display: inline-block;
@@ -197,6 +197,28 @@
       color: var(--accent);
     }
 
+    .cart-icon {
+      position: relative;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -12px;
+      background: var(--accent);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .theme-toggle {
       background: none;
       border: none;
@@ -276,87 +298,160 @@
       filter: grayscale(0.1);
     }
 
-    /* Cards */
-    .grid-2 {
+    /* Cards y productos */
+    .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 2rem;
+      margin-top: 2rem;
     }
 
-    .card {
+    .product-card {
       background: var(--bg-secondary);
       border-radius: 28px;
-      padding: 2rem;
+      padding: 1.5rem;
       transition: var(--transition);
       border: 1px solid var(--border-light);
       box-shadow: var(--shadow-sm);
+      text-align: center;
     }
 
-    .card:hover {
+    .product-card:hover {
       transform: translateY(-6px);
       box-shadow: var(--shadow-md);
-      border-color: var(--accent-soft);
     }
 
-    .card i {
-      font-size: 2.2rem;
+    .product-icon {
+      font-size: 2.5rem;
       color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .product-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-price {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 0.8rem 0;
+    }
+
+    .product-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
       margin-bottom: 1.2rem;
     }
 
-    .price {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin: 1rem 0 0.5rem;
-    }
-
-    /* FAQ */
-    .faq-item {
+    /* Carrito lateral */
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: -420px;
+      width: 400px;
+      height: 100vh;
       background: var(--bg-secondary);
-      border-radius: 20px;
-      margin-bottom: 1rem;
-      border: 1px solid var(--border-light);
-      overflow: hidden;
+      box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+      z-index: 1100;
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid var(--border-light);
     }
 
-    .faq-question {
-      padding: 1.2rem 1.5rem;
-      font-weight: 600;
+    .cart-sidebar.open {
+      right: 0;
+    }
+
+    .cart-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--border-light);
       display: flex;
       justify-content: space-between;
+      align-items: center;
+    }
+
+    .cart-header h3 {
+      font-size: 1.4rem;
+    }
+
+    .close-cart {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
       cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .faq-question:hover {
-      background: var(--accent-soft);
-    }
-
-    .faq-answer {
-      padding: 0 1.5rem;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.2s;
       color: var(--text-secondary);
-      border-top: 0px solid var(--border-light);
     }
 
-    .faq-item.open .faq-answer {
-      max-height: 300px;
-      padding: 0 1.5rem 1.2rem 1.5rem;
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .cart-item-info {
+      flex: 1;
+    }
+
+    .cart-item-title {
+      font-weight: 500;
+    }
+
+    .cart-item-price {
+      font-size: 0.85rem;
+      color: var(--accent);
+    }
+
+    .cart-item-remove {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .cart-total {
+      padding: 1rem;
       border-top: 1px solid var(--border-light);
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
     }
 
-    .faq-question i {
-      transition: transform 0.2s;
+    .cart-buttons {
+      padding: 1rem;
+      display: flex;
+      gap: 1rem;
     }
 
-    .faq-item.open .faq-question i {
-      transform: rotate(180deg);
+    /* Overlay */
+    .cart-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1050;
+      display: none;
     }
 
-    /* Form */
+    .cart-overlay.open {
+      display: block;
+    }
+
+    /* Formulario y chat */
     .form-group {
       margin-bottom: 1.2rem;
     }
@@ -378,7 +473,6 @@
       box-shadow: 0 0 0 3px rgba(196, 123, 78, 0.2);
     }
 
-    /* Footer */
     .footer {
       background: var(--bg-secondary);
       border-top: 1px solid var(--border-light);
@@ -397,7 +491,7 @@
       color: var(--accent);
     }
 
-    /* Chat bubble & panel */
+    /* Chat */
     .chat-bubble {
       position: fixed;
       bottom: 24px;
@@ -456,19 +550,6 @@
       align-items: center;
     }
 
-    .chat-header h4 {
-      font-weight: 600;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .chat-close {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-
     .chat-messages {
       flex: 1;
       padding: 1rem;
@@ -512,8 +593,6 @@
       flex: 1;
       padding: 0.7rem;
       border-radius: 40px;
-      border: 1px solid var(--border-light);
-      background: var(--bg-primary);
     }
 
     .chat-send {
@@ -524,17 +603,15 @@
       border-radius: 50%;
       color: white;
       cursor: pointer;
-      transition: 0.2s;
     }
 
-    /* Responsive */
     @media (max-width: 900px) {
       .hero-grid {
         grid-template-columns: 1fr;
         text-align: center;
       }
       h1 {
-        font-size: 3rem;
+        font-size: 3.5rem;
       }
       .nav-links {
         display: none;
@@ -554,16 +631,9 @@
         border-bottom: 1px solid var(--border-light);
         gap: 1rem;
       }
-      .container {
-        padding: 0 1.2rem;
-      }
-      .section {
-        padding: 3rem 0;
-      }
-      .chat-panel {
-        width: 320px;
-        right: 16px;
-        bottom: 80px;
+      .cart-sidebar {
+        width: 100%;
+        right: -100%;
       }
     }
   </style>
@@ -576,9 +646,13 @@
     <div class="nav-links" id="navLinks">
       <a href="#inicio">Inicio</a>
       <a href="#sobre">Sobre mí</a>
-      <a href="#servicios">Servicios</a>
+      <a href="#tienda">Tienda</a>
       <a href="#clases">Clases</a>
       <a href="#contacto">Contacto</a>
+      <div class="cart-icon" id="cartIcon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
       <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
         <i class="fas fa-moon"></i>
       </button>
@@ -589,8 +663,27 @@
   </div>
 </nav>
 
+<!-- Overlay y carrito -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Tu carrito</h3>
+    <button class="close-cart" id="closeCartBtn"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-items" id="cartItemsContainer">
+    <div style="text-align: center; padding: 2rem;">Carrito vacío</div>
+  </div>
+  <div class="cart-total" id="cartTotal">
+    <span>Total:</span>
+    <span>0€</span>
+  </div>
+  <div class="cart-buttons">
+    <button class="btn-primary" id="checkoutBtn" style="width: 100%;">Finalizar compra</button>
+  </div>
+</div>
+
 <main>
-  <!-- Hero / Inicio -->
+  <!-- Hero -->
   <section id="inicio" class="hero">
     <div class="container hero-grid">
       <div>
@@ -600,28 +693,27 @@
           <i class="fas fa-drum"></i> La percusión que hace que tu tema deje de sonar amateur.
         </div>
         <p class="hero-desc">
-          Congas, cajón, tabla y percusión étnica. <strong>Formado en La Habana</strong> · <strong>De gira con Melendi</strong>.<br>
+          Congas, cajón, tabla y percusión étnica. <strong>Formado en el CENSEA (Cuba)</strong> · <strong>De gira con Melendi</strong>.<br>
           Groove, autenticidad y un sonido único para tus producciones.
         </p>
         <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-          <a href="#servicios" class="btn-primary"><i class="fas fa-microphone-alt"></i> Quiero percusión en mi disco</a>
+          <a href="#tienda" class="btn-primary"><i class="fas fa-microphone-alt"></i> Quiero percusión en mi disco</a>
           <a href="#clases" class="btn-outline"><i class="fas fa-chalkboard-user"></i> Clases 125€/mes</a>
         </div>
       </div>
       <div class="hero-image">
-        <!-- Imagen placeholder (reemplazar con foto real) -->
         <img src="https://placehold.co/600x600/e6dfd7/a85f32?text=Odei+Lizaso" alt="Odei Lizaso">
       </div>
     </div>
   </section>
 
-  <!-- Sobre mí -->
+  <!-- Sobre mí (corregido) -->
   <section id="sobre" class="section">
     <div class="container">
       <h2>Sobre mí</h2>
-      <div class="grid-2">
+      <div class="grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
         <div>
-          <p style="font-size: 1.1rem; margin-bottom: 1.2rem;">Soy Odei Lizaso, percusionista de sesión con raíces cubanas y vascas. Mi formación en <strong>La Habana</strong> me ha dado un feeling único para la rumba, el son y la percusión latina.</p>
+          <p style="font-size: 1.1rem; margin-bottom: 1.2rem;">Soy Odei Lizaso, percusionista de sesión. Mi formación en el <strong>CENSEA (Cuba)</strong> me ha dado una base sólida en la rumba, el son y la percusión latina.</p>
           <p style="margin-bottom: 1rem;">Actualmente de gira con <strong>Melendi</strong> y colaborador habitual en estudios de Madrid, Barcelona y grabaciones internacionales. Aporto color rítmico, texturas orgánicas y un groove que transforma cualquier tema.</p>
           <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
             <span><i class="fas fa-check-circle" style="color: var(--accent);"></i> Congas, bongó, cajón</span>
@@ -629,99 +721,42 @@
             <span><i class="fas fa-check-circle" style="color: var(--accent);"></i> 200+ sesiones grabadas</span>
           </div>
         </div>
-        <div class="card">
+        <div class="card" style="background: var(--bg-secondary); border-radius: 28px; padding: 2rem;">
           <i class="fas fa-drumstick-bite"></i>
           <h3>Mi filosofía</h3>
           <p>“Cada proyecto merece un latido único. No solo toco ritmos: construyo la columna vertebral de tu canción”.</p>
-          <p style="margin-top: 1rem;">🎧 Escucha mis trabajos recientes en Spotify / Apple Music.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Servicios / Grabaciones -->
-  <section id="servicios" class="section">
+  <!-- Tienda (servicios como productos) -->
+  <section id="tienda" class="section">
     <div class="container">
-      <h2>Servicios profesionales</h2>
-      <div class="grid-2">
-        <div class="card">
-          <i class="fas fa-head-side-headphones"></i>
-          <h3>Grabaciones online</h3>
-          <p>Percusión profesional grabada en mi estudio. Recibo tu pista y te entrego stems en 48h. Alta calidad, listo para mezcla.</p>
-          <div class="price">Desde 150€</div>
-          <small>por tema</small>
-        </div>
-        <div class="card">
-          <i class="fas fa-tour"></i>
-          <h3>Músico de sesión & directo</h3>
-          <p>Disponible para giras, festivales y sesiones en estudio. Experiencia en grandes escenarios y versatilidad total.</p>
-          <div class="price">Consultar</div>
-          <small>según proyecto</small>
-        </div>
-        <div class="card">
-          <i class="fas fa-chalkboard-user"></i>
-          <h3>Clases de percusión</h3>
-          <p>Metodología propia basada en la escuela cubana. Niveles: iniciación (grupal reducido) e intermedio/avanzado (individual).</p>
-          <div class="price">125€/mes</div>
-          <small>plan básico · 4 clases</small>
-        </div>
-      </div>
+      <h2>Tienda de percusión</h2>
+      <p style="margin-bottom: 2rem;">Elige las pistas de percusión que necesitas para tu proyecto. Recibirás las pistas en alta calidad listas para mezclar.</p>
+      <div class="products-grid" id="productsGrid"></div>
     </div>
   </section>
 
-  <!-- Clases destacadas -->
+  <!-- Clases -->
   <section id="clases" class="section">
     <div class="container">
-      <h2>Planes de aprendizaje</h2>
-      <div class="grid-2">
+      <h2>Clases de percusión</h2>
+      <div class="grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
         <div class="card">
           <i class="fas fa-user-graduate"></i>
           <h3>Plan Básico</h3>
           <p>4 clases mensuales de 60min. Ideal para mantener el ritmo y mejorar técnica.</p>
-          <ul style="margin: 1rem 0 1.5rem 1.2rem;">
-            <li>✔ Clase semanal individual</li>
-            <li>✔ Material didáctico</li>
-            <li>✔ Soporte por WhatsApp</li>
-          </ul>
           <div class="price">125€ <span style="font-size:1rem;">/mes</span></div>
-          <a href="#contacto" class="btn-outline" style="margin-top: 1rem;">Elegir plan</a>
+          <button class="btn-outline add-to-cart-simple" data-name="Plan Básico Clases (1 mes)" data-price="125">Añadir al carrito</button>
         </div>
         <div class="card" style="border-color: var(--accent);">
           <i class="fas fa-crown"></i>
           <h3>Plan Pro</h3>
-          <p>Dos clases semanales + seguimiento personalizado.</p>
-          <ul style="margin: 1rem 0 1.5rem 1.2rem;">
-            <li>✔ 2 clases semanales 60min</li>
-            <li>✔ Revisión de grabaciones propias</li>
-            <li>✔ Masterclasses exclusivas</li>
-          </ul>
+          <p>2 clases semanales + seguimiento personalizado.</p>
           <div class="price">220€ <span style="font-size:1rem;">/mes</span></div>
-          <a href="#contacto" class="btn-primary" style="margin-top: 1rem;">Reservar plaza</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="section">
-    <div class="container">
-      <h2>Preguntas frecuentes</h2>
-      <div style="max-width: 800px; margin-top: 2rem;">
-        <div class="faq-item">
-          <div class="faq-question">¿Cómo funciona una grabación online? <i class="fas fa-chevron-down"></i></div>
-          <div class="faq-answer">Me envías tu pista en WAV, acordamos el groove y en 48h recibes los stems de percusión listos para mezclar.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">¿Las clases son presenciales u online? <i class="fas fa-chevron-down"></i></div>
-          <div class="faq-answer">Ambas modalidades. Presencial en Madrid (estudio equipado) u online por videollamada con calidad profesional.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">¿Qué instrumentos enseñas? <i class="fas fa-chevron-down"></i></div>
-          <div class="faq-answer">Congas, cajón flamenco, tabla, bongó, djembe y percusión menor aplicada a pop, latin, world music.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-question">¿Necesito tener mi propio instrumento? <i class="fas fa-chevron-down"></i></div>
-          <div class="faq-answer">Para empezar con cajón o tabla puedes usar uno básico. Te recomiendo opciones económicas.</div>
+          <button class="btn-primary add-to-cart-simple" data-name="Plan Pro Clases (1 mes)" data-price="220">Añadir al carrito</button>
         </div>
       </div>
     </div>
@@ -730,17 +765,12 @@
   <!-- Contacto -->
   <section id="contacto" class="section">
     <div class="container">
-      <h2>Contacto & Reservas</h2>
-      <div class="grid-2">
+      <h2>Contacto</h2>
+      <div class="grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
         <div>
           <p><i class="fas fa-envelope" style="color: var(--accent);"></i> <strong>info@odeilizaso.com</strong></p>
           <p><i class="fab fa-whatsapp" style="color: var(--accent);"></i> <strong>+34 661 967 807</strong></p>
           <p><i class="fab fa-instagram" style="color: var(--accent);"></i> @odei.percusion</p>
-          <div style="margin-top: 2rem; background: var(--accent-soft); padding: 1.5rem; border-radius: 24px;">
-            <i class="fas fa-calendar-check" style="font-size: 1.8rem;"></i>
-            <h3 style="margin: 0.5rem 0;">¿Hablamos de tu proyecto?</h3>
-            <p>Escríbeme y te responderé en menos de 24h.</p>
-          </div>
         </div>
         <div>
           <form id="contactForm">
@@ -751,10 +781,10 @@
               <input type="email" placeholder="Correo electrónico" id="email" required>
             </div>
             <div class="form-group">
-              <textarea rows="4" placeholder="Cuéntame tu proyecto o consulta..." id="mensaje" required></textarea>
+              <textarea rows="4" placeholder="Cuéntame tu proyecto..." id="mensaje" required></textarea>
             </div>
-            <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;"><i class="fas fa-paper-plane"></i> Enviar mensaje</button>
-            <p id="formFeedback" style="margin-top: 1rem; font-size: 0.85rem;"></p>
+            <button type="submit" class="btn-primary" style="width: 100%;"><i class="fas fa-paper-plane"></i> Enviar</button>
+            <p id="formFeedback" style="margin-top: 1rem;"></p>
           </form>
         </div>
       </div>
@@ -768,154 +798,254 @@
       <a href="#"><i class="fab fa-instagram"></i></a>
       <a href="#"><i class="fab fa-spotify"></i></a>
       <a href="#"><i class="fab fa-youtube"></i></a>
-      <a href="#"><i class="fab fa-facebook-f"></i></a>
     </div>
-    <p style="margin-top: 1.2rem;">© 2026 Odei Lizaso · Percusión con alma · Músico de sesión</p>
-    <p style="font-size: 0.75rem; margin-top: 0.5rem;">Formado en La Habana · Gira con Melendi</p>
+    <p>© 2026 Odei Lizaso · Percusión profesional · Formado en el CENSEA (Cuba)</p>
   </div>
 </footer>
 
-<!-- Chat flotante -->
+<!-- Chat -->
 <div class="chat-bubble" id="chatBubble">
   <i class="fas fa-comment-dots"></i>
 </div>
-
 <div class="chat-panel" id="chatPanel">
   <div class="chat-header">
     <h4><i class="fas fa-drum"></i> Asistente Odei</h4>
-    <button class="chat-close" id="closeChat">✕</button>
+    <button class="close-chat" id="closeChatBtn">✕</button>
   </div>
   <div class="chat-messages" id="chatMessages">
-    <div class="message bot">¡Hola! Soy el asistente de Odei. ¿En qué puedo ayudarte? Puedo informarte sobre precios, clases, grabaciones o disponibilidad.</div>
+    <div class="message bot">¡Hola! Soy el asistente de Odei. Cuéntame sobre tu proyecto musical: ¿qué estilo haces? ¿qué instrumentos necesitas? Así puedo asesorarte mejor.</div>
   </div>
   <div class="chat-input-area">
-    <input type="text" id="chatInput" placeholder="Escribe tu pregunta..." autocomplete="off">
-    <button class="chat-send" id="sendChat"><i class="fas fa-paper-plane"></i></button>
+    <input type="text" id="chatInput" placeholder="Escribe tu pregunta...">
+    <button class="chat-send" id="sendChatBtn"><i class="fas fa-paper-plane"></i></button>
   </div>
 </div>
 
 <script>
-  // ----- MODO OSCURO/CLARO -----
+  // Productos de la tienda
+  const products = [
+    { id: 1, name: "Shaker", price: 40, icon: "fas fa-shake", desc: "Pista de shaker profesional" },
+    { id: 2, name: "Pandereta", price: 30, icon: "fas fa-drum", desc: "Pista de pandereta" },
+    { id: 3, name: "Congas", price: 125, icon: "fas fa-drumstick-bite", desc: "Pista de congas" },
+    { id: 4, name: "Pack percusión menor completa", price: 85, icon: "fas fa-box", desc: "Shaker, pandereta, claves, maracas" },
+    { id: 5, name: "Pack 4 instrumentos a elegir", price: 150, icon: "fas fa-layer-group", desc: "Elige 4 instrumentos de la lista" },
+    { id: 6, name: "Tiempo de envío rápido", price: 70, icon: "fas fa-rocket", desc: "Entrega en 24h" },
+    { id: 7, name: "Revisión de mezcla", price: 50, icon: "fas fa-sliders-h", desc: "Ajuste de percusión en tu mezcla" }
+  ];
+
+  let cart = [];
+  
+  function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartUI();
+  }
+  
+  function loadCart() {
+    const saved = localStorage.getItem('cart');
+    if (saved) cart = JSON.parse(saved);
+    updateCartUI();
+  }
+  
+  function addToCart(product) {
+    const existing = cart.find(item => item.id === product.id);
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      cart.push({ ...product, quantity: 1 });
+    }
+    saveCart();
+  }
+  
+  function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    saveCart();
+  }
+  
+  function updateCartUI() {
+    const container = document.getElementById('cartItemsContainer');
+    const totalSpan = document.getElementById('cartTotal').querySelector('span:last-child');
+    const countSpan = document.getElementById('cartCount');
+    let total = 0;
+    let itemCount = 0;
+    if (cart.length === 0) {
+      container.innerHTML = '<div style="text-align: center; padding: 2rem;">Carrito vacío</div>';
+      totalSpan.innerText = '0€';
+      countSpan.innerText = '0';
+      return;
+    }
+    container.innerHTML = '';
+    cart.forEach(item => {
+      total += item.price * item.quantity;
+      itemCount += item.quantity;
+      const div = document.createElement('div');
+      div.className = 'cart-item';
+      div.innerHTML = `
+        <div class="cart-item-info">
+          <div class="cart-item-title">${item.name} x${item.quantity}</div>
+          <div class="cart-item-price">${item.price * item.quantity}€</div>
+        </div>
+        <button class="cart-item-remove" data-id="${item.id}"><i class="fas fa-trash-alt"></i></button>
+      `;
+      container.appendChild(div);
+    });
+    totalSpan.innerText = total + '€';
+    countSpan.innerText = itemCount;
+    document.querySelectorAll('.cart-item-remove').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const id = parseInt(btn.dataset.id);
+        removeFromCart(id);
+      });
+    });
+  }
+  
+  // Renderizar productos
+  function renderProducts() {
+    const grid = document.getElementById('productsGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    products.forEach(prod => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.innerHTML = `
+        <div class="product-icon"><i class="${prod.icon}"></i></div>
+        <div class="product-title">${prod.name}</div>
+        <div class="product-price">${prod.price}€</div>
+        <div class="product-desc">${prod.desc}</div>
+        <button class="btn-outline add-product" data-id="${prod.id}" data-name="${prod.name}" data-price="${prod.price}">Añadir al carrito</button>
+      `;
+      grid.appendChild(card);
+    });
+    document.querySelectorAll('.add-product').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = parseInt(btn.dataset.id);
+        const product = products.find(p => p.id === id);
+        if (product) addToCart(product);
+      });
+    });
+  }
+  
+  // Carrito UI
+  const cartIcon = document.getElementById('cartIcon');
+  const cartSidebar = document.getElementById('cartSidebar');
+  const cartOverlay = document.getElementById('cartOverlay');
+  const closeCartBtn = document.getElementById('closeCartBtn');
+  function openCart() {
+    cartSidebar.classList.add('open');
+    cartOverlay.classList.add('open');
+  }
+  function closeCart() {
+    cartSidebar.classList.remove('open');
+    cartOverlay.classList.remove('open');
+  }
+  cartIcon.addEventListener('click', openCart);
+  closeCartBtn.addEventListener('click', closeCart);
+  cartOverlay.addEventListener('click', closeCart);
+  
+  // Checkout
+  document.getElementById('checkoutBtn')?.addEventListener('click', () => {
+    if (cart.length === 0) {
+      alert('El carrito está vacío');
+      return;
+    }
+    alert('Gracias por tu compra. En breve recibirás un enlace para completar el pedido y te enviaremos las pistas.');
+    cart = [];
+    saveCart();
+    closeCart();
+  });
+  
+  // Añadir clases simples
+  document.querySelectorAll('.add-to-cart-simple').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name = btn.dataset.name;
+      const price = parseFloat(btn.dataset.price);
+      const id = Date.now() + Math.random();
+      addToCart({ id, name, price, quantity: 1 });
+    });
+  });
+  
+  // Tema oscuro/claro
   const themeToggle = document.getElementById('themeToggle');
   const body = document.body;
-  const icon = themeToggle.querySelector('i');
-  
+  const iconTheme = themeToggle.querySelector('i');
   function setTheme(theme) {
     if (theme === 'dark') {
       body.classList.add('dark');
-      icon.classList.remove('fa-moon');
-      icon.classList.add('fa-sun');
+      iconTheme.classList.remove('fa-moon');
+      iconTheme.classList.add('fa-sun');
     } else {
       body.classList.remove('dark');
-      icon.classList.remove('fa-sun');
-      icon.classList.add('fa-moon');
+      iconTheme.classList.remove('fa-sun');
+      iconTheme.classList.add('fa-moon');
     }
     localStorage.setItem('theme', theme);
   }
-  
   const savedTheme = localStorage.getItem('theme');
   if (savedTheme === 'dark') setTheme('dark');
   else setTheme('light');
-  
   themeToggle.addEventListener('click', () => {
     if (body.classList.contains('dark')) setTheme('light');
     else setTheme('dark');
   });
   
-  // ----- MOBILE MENU -----
+  // Mobile menu
   const mobileMenuBtn = document.getElementById('mobileMenu');
-  const navLinks = document.getElementById('navLinks');
-  mobileMenuBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('mobile-open');
+  const navLinksDiv = document.getElementById('navLinks');
+  mobileMenuBtn?.addEventListener('click', () => {
+    navLinksDiv.classList.toggle('mobile-open');
   });
-  // Cerrar menú al hacer clic en un enlace
   document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('mobile-open');
-    });
+    link.addEventListener('click', () => navLinksDiv.classList.remove('mobile-open'));
   });
   
-  // ----- FAQ ACORDEÓN -----
-  const faqItems = document.querySelectorAll('.faq-item');
-  faqItems.forEach(item => {
-    const question = item.querySelector('.faq-question');
-    question.addEventListener('click', () => {
-      item.classList.toggle('open');
-    });
-  });
-  
-  // ----- FORMULARIO DE CONTACTO -----
+  // Formulario contacto
   const contactForm = document.getElementById('contactForm');
-  const feedback = document.getElementById('formFeedback');
-  contactForm.addEventListener('submit', (e) => {
+  const feedbackP = document.getElementById('formFeedback');
+  contactForm?.addEventListener('submit', (e) => {
     e.preventDefault();
-    const nombre = document.getElementById('nombre').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const mensaje = document.getElementById('mensaje').value.trim();
-    if (!nombre || !email || !mensaje) {
-      feedback.innerHTML = '⚠️ Por favor, completa todos los campos.';
-      feedback.style.color = '#c47b4e';
-      setTimeout(() => feedback.innerHTML = '', 3000);
-      return;
-    }
-    if (!email.includes('@')) {
-      feedback.innerHTML = '📧 Introduce un email válido.';
-      feedback.style.color = '#c47b4e';
-      setTimeout(() => feedback.innerHTML = '', 3000);
-      return;
-    }
-    feedback.innerHTML = '✅ ¡Mensaje enviado! Odei te responderá en breve.';
-    feedback.style.color = '#2c7a47';
+    feedbackP.innerHTML = '✅ Mensaje enviado. Te responderé en breve.';
+    feedbackP.style.color = '#2c7a47';
     contactForm.reset();
-    setTimeout(() => feedback.innerHTML = '', 4000);
+    setTimeout(() => feedbackP.innerHTML = '', 3000);
   });
   
-  // ----- CHATBOT AUTÓNOMO (inteligencia local) -----
-  const chatBubble = document.getElementById('chatBubble');
-  const chatPanel = document.getElementById('chatPanel');
-  const closeChat = document.getElementById('closeChat');
-  const chatMessages = document.getElementById('chatMessages');
+  // Chat autónomo con preguntas para generar contenido
+  const chatBubbleBtn = document.getElementById('chatBubble');
+  const chatPanelDiv = document.getElementById('chatPanel');
+  const closeChatBtnDiv = document.getElementById('closeChatBtn');
+  const chatMessagesDiv = document.getElementById('chatMessages');
   const chatInput = document.getElementById('chatInput');
-  const sendChat = document.getElementById('sendChat');
+  const sendChatBtn = document.getElementById('sendChatBtn');
   
-  function openChat() {
-    chatPanel.classList.add('open');
-  }
-  function closeChatPanel() {
-    chatPanel.classList.remove('open');
-  }
-  chatBubble.addEventListener('click', openChat);
-  closeChat.addEventListener('click', closeChatPanel);
+  function openChatPanel() { chatPanelDiv.classList.add('open'); }
+  function closeChatPanel() { chatPanelDiv.classList.remove('open'); }
+  chatBubbleBtn.addEventListener('click', openChatPanel);
+  closeChatBtnDiv.addEventListener('click', closeChatPanel);
   
   function addMessage(text, isUser = false) {
     const msgDiv = document.createElement('div');
     msgDiv.className = `message ${isUser ? 'user' : 'bot'}`;
     msgDiv.textContent = text;
-    chatMessages.appendChild(msgDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+    chatMessagesDiv.appendChild(msgDiv);
+    chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
   }
   
-  // Respuestas automáticas inteligentes
-  function getBotReply(userMessage) {
-    const msg = userMessage.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    if (msg.includes('precio') || msg.includes('cuanto cuesta') || msg.includes('costo') || msg.includes('grabacion')) {
-      return "Las grabaciones online desde 150€ por tema. Para sesiones presenciales o giras, escríbeme y te daré un presupuesto personalizado. ¿Te interesa algún servicio en concreto?";
-    } else if (msg.includes('clase') || msg.includes('aprender') || msg.includes('curso')) {
-      return "Ofrezco clases online y presenciales en Madrid. Plan básico 125€/mes (1 clase/semana) y Plan Pro 220€/mes (2 clases/semana). También tengo clases grupales para principiantes. ¿Quieres más detalles?";
-    } else if (msg.includes('disponibilidad') || msg.includes('cuando') || msg.includes('fecha')) {
-      return "Actualmente tengo disponibilidad para grabaciones y clases. Para fechas concretas de giras, consúltame con antelación. ¿Para qué fecha lo necesitas?";
-    } else if (msg.includes('whatsapp') || msg.includes('contacto') || msg.includes('telefono')) {
-      return "Puedes escribirme directamente al WhatsApp +34 661 967 807 o enviar un mensaje desde el formulario de contacto. ¡Estaré encantado de ayudarte!";
-    } else if (msg.includes('hola') || msg.includes('buenas') || msg.includes('saludo')) {
-      return "¡Hola! ¿Cómo puedo ayudarte hoy? Pregúntame sobre clases, grabaciones o disponibilidad.";
-    } else if (msg.includes('gira') || msg.includes('melendi')) {
-      return "Actualmente estoy de gira con Melendi (20 Años). También colaboro con otros artistas. Si necesitas percusión en directo, cuéntame tu proyecto.";
+  // Respuestas inteligentes que preguntan para crear contenido personalizado
+  function getBotReply(userMsg) {
+    const lower = userMsg.toLowerCase();
+    if (lower.includes('estilo') || lower.includes('música') || lower.includes('proyecto')) {
+      return "¡Me encantaría saber más! ¿Qué género musical haces? ¿Buscas algo rítmico, orgánico o más electrónico? Así te recomiendo los instrumentos ideales.";
+    } else if (lower.includes('instrumento') || lower.includes('congas') || lower.includes('shaker')) {
+      return "Para tu estilo, te recomendaría capas de shaker y pandereta para dar movimiento, y congas para la base rítmica. ¿Te gustaría probar un pack personalizado?";
+    } else if (lower.includes('precio') || lower.includes('costo')) {
+      return "Los precios son desde 30€ por pista. Puedes ver todos los servicios en la tienda. ¿Necesitas algo específico?";
+    } else if (lower.includes('clase') || lower.includes('aprender')) {
+      return "Las clases son online o presenciales en Madrid. Plan básico 125€/mes. ¿Te interesa algún nivel en particular?";
     } else {
-      return "Gracias por tu mensaje. ¿Podrías especificar si te interesan clases, grabaciones online, o contratarme para un directo? Te responderé enseguida.";
+      return "Gracias por contarme. Para darte una recomendación exacta, cuéntame: ¿qué proyecto tienes entre manos? (estilo, duración, instrumentos que te gustan)";
     }
   }
   
-  function sendMessage() {
+  function sendChatMessage() {
     const text = chatInput.value.trim();
     if (!text) return;
     addMessage(text, true);
@@ -923,22 +1053,18 @@
     setTimeout(() => {
       const reply = getBotReply(text);
       addMessage(reply, false);
-    }, 500);
+    }, 600);
   }
-  
-  sendChat.addEventListener('click', sendMessage);
+  sendChatBtn.addEventListener('click', sendChatMessage);
   chatInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') sendMessage();
+    if (e.key === 'Enter') sendChatMessage();
   });
   
-  // Cerrar chat si se hace clic fuera? opcional
-  document.addEventListener('click', (e) => {
-    if (!chatPanel.contains(e.target) && !chatBubble.contains(e.target) && chatPanel.classList.contains('open')) {
-      closeChatPanel();
-    }
-  });
+  // Inicializar
+  renderProducts();
+  loadCart();
   
-  // Smooth scroll para enlaces internos
+  // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const targetId = this.getAttribute('href');
@@ -950,14 +1076,6 @@
       }
     });
   });
-  
-  // Pequeña animación de carga
-  window.addEventListener('load', () => {
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.3s';
-    setTimeout(() => document.body.style.opacity = '1', 50);
-  });
 </script>
 </body>
 </html>
-```
