@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Odei Lizaso · Tienda de percusión profesional</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title>Odei Lizaso · Percusión profesional</title>
   <!-- Google Fonts + Font Awesome -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -53,7 +53,7 @@
     .container {
       max-width: 1280px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 1.5rem;
     }
 
     /* Typography */
@@ -64,14 +64,14 @@
     }
 
     h1 {
-      font-size: 4.8rem;
+      font-size: 3.8rem;
       line-height: 1.05;
       margin-bottom: 1rem;
     }
 
     h2 {
-      font-size: 2.8rem;
-      margin-bottom: 1.8rem;
+      font-size: 2.4rem;
+      margin-bottom: 1.5rem;
       position: relative;
       display: inline-block;
     }
@@ -88,7 +88,7 @@
     }
 
     .section {
-      padding: 5rem 0;
+      padding: 4rem 0;
       border-bottom: 1px solid var(--border-light);
     }
 
@@ -97,20 +97,25 @@
     }
 
     /* Buttons */
-    .btn-primary {
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 0.9rem 2rem;
+    .btn-primary, .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.8rem;
       font-weight: 600;
       font-size: 0.9rem;
       border-radius: 60px;
       cursor: pointer;
       transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
       text-decoration: none;
+      border: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     }
 
@@ -124,16 +129,6 @@
       background: transparent;
       border: 1.5px solid var(--accent);
       color: var(--accent);
-      padding: 0.85rem 2rem;
-      font-weight: 600;
-      font-size: 0.9rem;
-      border-radius: 60px;
-      cursor: pointer;
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      text-decoration: none;
     }
 
     .btn-outline:hover {
@@ -150,29 +145,28 @@
       right: 0;
       z-index: 1000;
       backdrop-filter: blur(16px);
-      background: rgba(var(--bg-primary-rgb, 250, 249, 247), 0.85);
+      background: rgba(250, 249, 247, 0.9);
       border-bottom: 1px solid var(--border-light);
       transition: var(--transition);
     }
 
     body.dark .navbar {
-      background: rgba(18, 18, 18, 0.9);
+      background: rgba(18, 18, 18, 0.95);
     }
 
     .nav-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
+      padding: 0.8rem 1.5rem;
       max-width: 1400px;
       margin: 0 auto;
     }
 
     .logo {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       font-weight: 700;
       font-family: 'Cormorant Garamond', serif;
-      letter-spacing: -0.02em;
     }
 
     .logo span {
@@ -181,14 +175,14 @@
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 1.5rem;
       align-items: center;
     }
 
     .nav-links a {
       text-decoration: none;
       font-weight: 500;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--text-primary);
       transition: color 0.2s;
     }
@@ -209,7 +203,7 @@
       right: -12px;
       background: var(--accent);
       color: white;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: bold;
       border-radius: 50%;
       width: 18px;
@@ -223,16 +217,10 @@
       background: none;
       border: none;
       cursor: pointer;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       color: var(--text-primary);
       display: flex;
       align-items: center;
-      transition: transform 0.2s;
-    }
-
-    .theme-toggle:hover {
-      transform: scale(1.05);
-      color: var(--accent);
     }
 
     .mobile-menu {
@@ -243,115 +231,104 @@
 
     /* Hero */
     .hero {
-      min-height: 90vh;
+      min-height: 85vh;
       display: flex;
       align-items: center;
-      padding: 7rem 0 4rem;
+      padding: 6rem 0 3rem;
     }
 
     .hero-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 3rem;
+      gap: 2rem;
       align-items: center;
     }
 
     .hero-badge {
       display: inline-block;
       background: var(--accent-soft);
-      padding: 0.3rem 1rem;
+      padding: 0.25rem 0.9rem;
       border-radius: 40px;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-tagline {
-      font-size: 1.3rem;
-      font-weight: 500;
-      color: var(--accent);
-      margin: 1.2rem 0;
-    }
-
-    .hero-desc {
-      font-size: 1rem;
-      color: var(--text-secondary);
-      margin: 1.5rem 0;
-    }
-
-    .hero-image {
-      background: linear-gradient(145deg, var(--accent-soft), var(--bg-secondary));
-      border-radius: 40px;
-      padding: 1.5rem;
-      text-align: center;
-      box-shadow: var(--shadow-md);
-    }
-
-    .hero-image img {
-      max-width: 100%;
-      border-radius: 28px;
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      aspect-ratio: 1 / 1;
-      filter: grayscale(0.1);
-    }
-
-    /* Cards y productos */
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .product-card {
-      background: var(--bg-secondary);
-      border-radius: 28px;
-      padding: 1.5rem;
-      transition: var(--transition);
-      border: 1px solid var(--border-light);
-      box-shadow: var(--shadow-sm);
-      text-align: center;
-    }
-
-    .product-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .product-icon {
-      font-size: 2.5rem;
       color: var(--accent);
       margin-bottom: 1rem;
     }
 
+    .hero-tagline {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin: 1rem 0;
+    }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin: 1.2rem 0;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 28px;
+      margin: 0 auto;
+      display: block;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    /* Cards y productos */
+    .products-grid, .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card, .product-card {
+      background: var(--bg-secondary);
+      border-radius: 24px;
+      padding: 1.5rem;
+      transition: var(--transition);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .product-card {
+      text-align: center;
+    }
+
+    .product-icon {
+      font-size: 2.2rem;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
     .product-title {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 600;
-      margin-bottom: 0.5rem;
     }
 
     .product-price {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 700;
       color: var(--accent);
-      margin: 0.8rem 0;
+      margin: 0.6rem 0;
     }
 
-    .product-desc {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      margin-bottom: 1.2rem;
+    .price {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
     }
 
     /* Carrito lateral */
     .cart-sidebar {
       position: fixed;
       top: 0;
-      right: -420px;
+      right: -100%;
       width: 400px;
+      max-width: 90vw;
       height: 100vh;
       background: var(--bg-secondary);
       box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
@@ -367,23 +344,11 @@
     }
 
     .cart-header {
-      padding: 1.5rem;
+      padding: 1.2rem;
       border-bottom: 1px solid var(--border-light);
       display: flex;
       justify-content: space-between;
       align-items: center;
-    }
-
-    .cart-header h3 {
-      font-size: 1.4rem;
-    }
-
-    .close-cart {
-      background: none;
-      border: none;
-      font-size: 1.4rem;
-      cursor: pointer;
-      color: var(--text-secondary);
     }
 
     .cart-items {
@@ -400,27 +365,6 @@
       border-bottom: 1px solid var(--border-light);
     }
 
-    .cart-item-info {
-      flex: 1;
-    }
-
-    .cart-item-title {
-      font-weight: 500;
-    }
-
-    .cart-item-price {
-      font-size: 0.85rem;
-      color: var(--accent);
-    }
-
-    .cart-item-remove {
-      background: none;
-      border: none;
-      color: var(--text-secondary);
-      cursor: pointer;
-      font-size: 1rem;
-    }
-
     .cart-total {
       padding: 1rem;
       border-top: 1px solid var(--border-light);
@@ -431,11 +375,8 @@
 
     .cart-buttons {
       padding: 1rem;
-      display: flex;
-      gap: 1rem;
     }
 
-    /* Overlay */
     .cart-overlay {
       position: fixed;
       top: 0;
@@ -451,78 +392,64 @@
       display: block;
     }
 
-    /* Formulario y chat */
+    /* Formulario */
     .form-group {
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
     }
 
     input, textarea {
       width: 100%;
-      padding: 1rem;
+      padding: 0.9rem;
       border-radius: 16px;
       border: 1px solid var(--border-light);
       background: var(--bg-secondary);
       color: var(--text-primary);
       font-family: 'Inter', sans-serif;
-      transition: 0.2s;
     }
 
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(196, 123, 78, 0.2);
-    }
-
+    /* Footer */
     .footer {
       background: var(--bg-secondary);
       border-top: 1px solid var(--border-light);
-      padding: 2.5rem 0;
+      padding: 2rem 0;
       text-align: center;
     }
 
     .social-icons a {
       color: var(--text-secondary);
-      margin: 0 0.8rem;
-      font-size: 1.4rem;
+      margin: 0 0.6rem;
+      font-size: 1.3rem;
       transition: color 0.2s;
-    }
-
-    .social-icons a:hover {
-      color: var(--accent);
     }
 
     /* Chat */
     .chat-bubble {
       position: fixed;
-      bottom: 24px;
-      right: 24px;
+      bottom: 20px;
+      right: 20px;
       z-index: 1000;
-      width: 56px;
-      height: 56px;
+      width: 52px;
+      height: 52px;
       background: var(--accent);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-      transition: transform 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
       color: white;
-      font-size: 1.6rem;
-    }
-
-    .chat-bubble:hover {
-      transform: scale(1.05);
+      font-size: 1.4rem;
     }
 
     .chat-panel {
       position: fixed;
-      bottom: 90px;
-      right: 24px;
-      width: 360px;
-      max-height: 520px;
+      bottom: 80px;
+      right: 20px;
+      width: 340px;
+      max-width: calc(100vw - 40px);
+      max-height: 500px;
       background: var(--bg-secondary);
-      border-radius: 24px;
+      border-radius: 20px;
       box-shadow: var(--shadow-md);
       border: 1px solid var(--border-light);
       display: flex;
@@ -531,7 +458,7 @@
       transform: scale(0.9);
       opacity: 0;
       pointer-events: none;
-      transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      transition: all 0.2s ease;
       overflow: hidden;
     }
 
@@ -542,7 +469,7 @@
     }
 
     .chat-header {
-      padding: 1rem;
+      padding: 0.8rem;
       background: var(--accent);
       color: white;
       display: flex;
@@ -552,25 +479,23 @@
 
     .chat-messages {
       flex: 1;
-      padding: 1rem;
+      padding: 0.8rem;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-      gap: 0.8rem;
-      max-height: 380px;
+      gap: 0.6rem;
+      max-height: 350px;
     }
 
     .message {
       max-width: 85%;
-      padding: 0.7rem 1rem;
+      padding: 0.6rem 0.9rem;
       border-radius: 18px;
-      font-size: 0.85rem;
-      line-height: 1.4;
+      font-size: 0.8rem;
     }
 
     .message.bot {
       background: var(--accent-soft);
-      color: var(--text-primary);
       align-self: flex-start;
       border-bottom-left-radius: 4px;
     }
@@ -584,56 +509,187 @@
 
     .chat-input-area {
       display: flex;
-      padding: 0.8rem;
+      padding: 0.7rem;
       border-top: 1px solid var(--border-light);
       gap: 0.5rem;
     }
 
     .chat-input-area input {
       flex: 1;
-      padding: 0.7rem;
+      padding: 0.6rem;
       border-radius: 40px;
+      font-size: 0.85rem;
     }
 
     .chat-send {
       background: var(--accent);
       border: none;
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       color: white;
       cursor: pointer;
     }
 
-    @media (max-width: 900px) {
+    /* ===== RESPONSIVE (iPhone 17 Pro Max y similares) ===== */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1.2rem;
+      }
+      
+      h1 {
+        font-size: 2.8rem;
+      }
+      
+      h2 {
+        font-size: 2rem;
+      }
+      
+      .hero {
+        padding: 5rem 0 2rem;
+        min-height: auto;
+      }
+      
       .hero-grid {
         grid-template-columns: 1fr;
         text-align: center;
+        gap: 1.5rem;
       }
-      h1 {
-        font-size: 3.5rem;
+      
+      .hero-image img {
+        max-width: 280px;
       }
+      
+      .hero-badge {
+        font-size: 0.65rem;
+      }
+      
+      .hero-tagline {
+        font-size: 1.1rem;
+      }
+      
+      .hero-desc {
+        font-size: 0.9rem;
+      }
+      
+      .btn-primary, .btn-outline {
+        padding: 0.7rem 1.4rem;
+        font-size: 0.8rem;
+        white-space: normal;
+        text-align: center;
+      }
+      
       .nav-links {
         display: none;
       }
+      
       .mobile-menu {
         display: block;
       }
+      
       .nav-links.mobile-open {
         display: flex;
         flex-direction: column;
         position: absolute;
-        top: 70px;
+        top: 60px;
         left: 0;
         right: 0;
         background: var(--bg-secondary);
-        padding: 1.5rem;
+        padding: 1.2rem;
         border-bottom: 1px solid var(--border-light);
         gap: 1rem;
+        z-index: 1000;
       }
+      
+      .products-grid, .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      
+      .card, .product-card {
+        padding: 1.2rem;
+      }
+      
+      .section {
+        padding: 2.5rem 0;
+      }
+      
       .cart-sidebar {
         width: 100%;
+        max-width: 100%;
         right: -100%;
+      }
+      
+      .cart-sidebar.open {
+        right: 0;
+      }
+      
+      .chat-panel {
+        width: calc(100vw - 30px);
+        right: 15px;
+        bottom: 75px;
+        max-height: 480px;
+      }
+      
+      .chat-bubble {
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+        bottom: 15px;
+        right: 15px;
+      }
+      
+      .footer {
+        padding: 1.5rem 0;
+      }
+      
+      .footer .container {
+        padding: 0 1rem;
+      }
+      
+      /* Ajustes de tipografía para mejor lectura */
+      p, .product-desc, .about-text {
+        font-size: 0.9rem;
+      }
+      
+      .price {
+        font-size: 1.5rem;
+      }
+      
+      .product-price {
+        font-size: 1.3rem;
+      }
+      
+      /* Espaciado para los botones del hero */
+      .hero-btns {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: center;
+      }
+      
+      .hero-btns a {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    
+    /* Para pantallas muy pequeñas (iPhone SE) */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2.3rem;
+      }
+      
+      .container {
+        padding: 0 1rem;
+      }
+      
+      .hero-image img {
+        max-width: 220px;
+      }
+      
+      .btn-primary, .btn-outline {
+        width: 100%;
       }
     }
   </style>
@@ -668,7 +724,7 @@
 <div class="cart-sidebar" id="cartSidebar">
   <div class="cart-header">
     <h3>Tu carrito</h3>
-    <button class="close-cart" id="closeCartBtn"><i class="fas fa-times"></i></button>
+    <button class="close-cart" id="closeCartBtn" style="background:none; border:none; font-size:1.3rem; cursor:pointer;">✕</button>
   </div>
   <div class="cart-items" id="cartItemsContainer">
     <div style="text-align: center; padding: 2rem;">Carrito vacío</div>
@@ -696,7 +752,7 @@
           Congas, cajón, tabla y percusión étnica. <strong>Formado en el CENSEA (Cuba)</strong> · <strong>De gira con Melendi</strong>.<br>
           Groove, autenticidad y un sonido único para tus producciones.
         </p>
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <div class="hero-btns" style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
           <a href="#tienda" class="btn-primary"><i class="fas fa-microphone-alt"></i> Quiero percusión en mi disco</a>
           <a href="#clases" class="btn-outline"><i class="fas fa-chalkboard-user"></i> Clases 125€/mes</a>
         </div>
@@ -707,21 +763,21 @@
     </div>
   </section>
 
-  <!-- Sobre mí (corregido) -->
+  <!-- Sobre mí -->
   <section id="sobre" class="section">
     <div class="container">
       <h2>Sobre mí</h2>
-      <div class="grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+      <div class="grid-2">
         <div>
-          <p style="font-size: 1.1rem; margin-bottom: 1.2rem;">Soy Odei Lizaso, percusionista de sesión. Mi formación en el <strong>CENSEA (Cuba)</strong> me ha dado una base sólida en la rumba, el son y la percusión latina.</p>
+          <p style="margin-bottom: 1rem;">Soy Odei Lizaso, percusionista de sesión. Mi formación en el <strong>CENSEA (Cuba)</strong> me ha dado una base sólida en la rumba, el son y la percusión latina.</p>
           <p style="margin-bottom: 1rem;">Actualmente de gira con <strong>Melendi</strong> y colaborador habitual en estudios de Madrid, Barcelona y grabaciones internacionales. Aporto color rítmico, texturas orgánicas y un groove que transforma cualquier tema.</p>
-          <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
             <span><i class="fas fa-check-circle" style="color: var(--accent);"></i> Congas, bongó, cajón</span>
             <span><i class="fas fa-check-circle" style="color: var(--accent);"></i> Percusión étnica & tabla</span>
             <span><i class="fas fa-check-circle" style="color: var(--accent);"></i> 200+ sesiones grabadas</span>
           </div>
         </div>
-        <div class="card" style="background: var(--bg-secondary); border-radius: 28px; padding: 2rem;">
+        <div class="card">
           <i class="fas fa-drumstick-bite"></i>
           <h3>Mi filosofía</h3>
           <p>“Cada proyecto merece un latido único. No solo toco ritmos: construyo la columna vertebral de tu canción”.</p>
@@ -730,11 +786,11 @@
     </div>
   </section>
 
-  <!-- Tienda (servicios como productos) -->
+  <!-- Tienda -->
   <section id="tienda" class="section">
     <div class="container">
       <h2>Tienda de percusión</h2>
-      <p style="margin-bottom: 2rem;">Elige las pistas de percusión que necesitas para tu proyecto. Recibirás las pistas en alta calidad listas para mezclar.</p>
+      <p style="margin-bottom: 1.5rem;">Elige las pistas de percusión que necesitas para tu proyecto. Recibirás las pistas en alta calidad listas para mezclar.</p>
       <div class="products-grid" id="productsGrid"></div>
     </div>
   </section>
@@ -743,20 +799,20 @@
   <section id="clases" class="section">
     <div class="container">
       <h2>Clases de percusión</h2>
-      <div class="grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+      <div class="grid-2">
         <div class="card">
           <i class="fas fa-user-graduate"></i>
           <h3>Plan Básico</h3>
-          <p>4 clases mensuales de 60min. Ideal para mantener el ritmo y mejorar técnica.</p>
+          <p>4 clases mensuales de 60min. Ideal para mantener el ritmo.</p>
           <div class="price">125€ <span style="font-size:1rem;">/mes</span></div>
-          <button class="btn-outline add-to-cart-simple" data-name="Plan Básico Clases (1 mes)" data-price="125">Añadir al carrito</button>
+          <button class="btn-outline add-to-cart-simple" data-name="Plan Básico Clases (1 mes)" data-price="125" style="margin-top: 1rem;">Añadir al carrito</button>
         </div>
         <div class="card" style="border-color: var(--accent);">
           <i class="fas fa-crown"></i>
           <h3>Plan Pro</h3>
           <p>2 clases semanales + seguimiento personalizado.</p>
           <div class="price">220€ <span style="font-size:1rem;">/mes</span></div>
-          <button class="btn-primary add-to-cart-simple" data-name="Plan Pro Clases (1 mes)" data-price="220">Añadir al carrito</button>
+          <button class="btn-primary add-to-cart-simple" data-name="Plan Pro Clases (1 mes)" data-price="220" style="margin-top: 1rem;">Añadir al carrito</button>
         </div>
       </div>
     </div>
@@ -766,7 +822,7 @@
   <section id="contacto" class="section">
     <div class="container">
       <h2>Contacto</h2>
-      <div class="grid-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+      <div class="grid-2">
         <div>
           <p><i class="fas fa-envelope" style="color: var(--accent);"></i> <strong>info@odeilizaso.com</strong></p>
           <p><i class="fab fa-whatsapp" style="color: var(--accent);"></i> <strong>+34 661 967 807</strong></p>
@@ -784,7 +840,7 @@
               <textarea rows="4" placeholder="Cuéntame tu proyecto..." id="mensaje" required></textarea>
             </div>
             <button type="submit" class="btn-primary" style="width: 100%;"><i class="fas fa-paper-plane"></i> Enviar</button>
-            <p id="formFeedback" style="margin-top: 1rem;"></p>
+            <p id="formFeedback" style="margin-top: 0.8rem; font-size:0.85rem;"></p>
           </form>
         </div>
       </div>
@@ -799,7 +855,7 @@
       <a href="#"><i class="fab fa-spotify"></i></a>
       <a href="#"><i class="fab fa-youtube"></i></a>
     </div>
-    <p>© 2026 Odei Lizaso · Percusión profesional · Formado en el CENSEA (Cuba)</p>
+    <p style="margin-top: 1rem;">© 2026 Odei Lizaso · Percusión profesional · Formado en el CENSEA (Cuba)</p>
   </div>
 </footer>
 
@@ -810,7 +866,7 @@
 <div class="chat-panel" id="chatPanel">
   <div class="chat-header">
     <h4><i class="fas fa-drum"></i> Asistente Odei</h4>
-    <button class="close-chat" id="closeChatBtn">✕</button>
+    <button class="close-chat" id="closeChatBtn" style="background:none; border:none; color:white; font-size:1.2rem; cursor:pointer;">✕</button>
   </div>
   <div class="chat-messages" id="chatMessages">
     <div class="message bot">¡Hola! Soy el asistente de Odei. Cuéntame sobre tu proyecto musical: ¿qué estilo haces? ¿qué instrumentos necesitas? Así puedo asesorarte mejor.</div>
@@ -822,7 +878,7 @@
 </div>
 
 <script>
-  // Productos de la tienda
+  // Productos
   const products = [
     { id: 1, name: "Shaker", price: 40, icon: "fas fa-shake", desc: "Pista de shaker profesional" },
     { id: 2, name: "Pandereta", price: 30, icon: "fas fa-drum", desc: "Pista de pandereta" },
@@ -880,11 +936,11 @@
       const div = document.createElement('div');
       div.className = 'cart-item';
       div.innerHTML = `
-        <div class="cart-item-info">
-          <div class="cart-item-title">${item.name} x${item.quantity}</div>
-          <div class="cart-item-price">${item.price * item.quantity}€</div>
+        <div style="flex:1">
+          <div style="font-weight:500">${item.name} x${item.quantity}</div>
+          <div style="font-size:0.8rem; color:var(--accent)">${item.price * item.quantity}€</div>
         </div>
-        <button class="cart-item-remove" data-id="${item.id}"><i class="fas fa-trash-alt"></i></button>
+        <button class="cart-item-remove" data-id="${item.id}" style="background:none; border:none; cursor:pointer;"><i class="fas fa-trash-alt"></i></button>
       `;
       container.appendChild(div);
     });
@@ -898,7 +954,6 @@
     });
   }
   
-  // Renderizar productos
   function renderProducts() {
     const grid = document.getElementById('productsGrid');
     if (!grid) return;
@@ -911,7 +966,7 @@
         <div class="product-title">${prod.name}</div>
         <div class="product-price">${prod.price}€</div>
         <div class="product-desc">${prod.desc}</div>
-        <button class="btn-outline add-product" data-id="${prod.id}" data-name="${prod.name}" data-price="${prod.price}">Añadir al carrito</button>
+        <button class="btn-outline add-product" data-id="${prod.id}" style="margin-top: 0.8rem;">Añadir al carrito</button>
       `;
       grid.appendChild(card);
     });
@@ -929,31 +984,20 @@
   const cartSidebar = document.getElementById('cartSidebar');
   const cartOverlay = document.getElementById('cartOverlay');
   const closeCartBtn = document.getElementById('closeCartBtn');
-  function openCart() {
-    cartSidebar.classList.add('open');
-    cartOverlay.classList.add('open');
-  }
-  function closeCart() {
-    cartSidebar.classList.remove('open');
-    cartOverlay.classList.remove('open');
-  }
+  function openCart() { cartSidebar.classList.add('open'); cartOverlay.classList.add('open'); }
+  function closeCart() { cartSidebar.classList.remove('open'); cartOverlay.classList.remove('open'); }
   cartIcon.addEventListener('click', openCart);
   closeCartBtn.addEventListener('click', closeCart);
   cartOverlay.addEventListener('click', closeCart);
   
-  // Checkout
   document.getElementById('checkoutBtn')?.addEventListener('click', () => {
-    if (cart.length === 0) {
-      alert('El carrito está vacío');
-      return;
-    }
-    alert('Gracias por tu compra. En breve recibirás un enlace para completar el pedido y te enviaremos las pistas.');
+    if (cart.length === 0) { alert('El carrito está vacío'); return; }
+    alert('Gracias por tu compra. En breve recibirás un enlace para completar el pedido.');
     cart = [];
     saveCart();
     closeCart();
   });
   
-  // Añadir clases simples
   document.querySelectorAll('.add-to-cart-simple').forEach(btn => {
     btn.addEventListener('click', () => {
       const name = btn.dataset.name;
@@ -997,7 +1041,7 @@
     link.addEventListener('click', () => navLinksDiv.classList.remove('mobile-open'));
   });
   
-  // Formulario contacto
+  // Contacto
   const contactForm = document.getElementById('contactForm');
   const feedbackP = document.getElementById('formFeedback');
   contactForm?.addEventListener('submit', (e) => {
@@ -1008,7 +1052,7 @@
     setTimeout(() => feedbackP.innerHTML = '', 3000);
   });
   
-  // Chat autónomo con preguntas para generar contenido
+  // Chat autónomo
   const chatBubbleBtn = document.getElementById('chatBubble');
   const chatPanelDiv = document.getElementById('chatPanel');
   const closeChatBtnDiv = document.getElementById('closeChatBtn');
@@ -1029,7 +1073,6 @@
     chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
   }
   
-  // Respuestas inteligentes que preguntan para crear contenido personalizado
   function getBotReply(userMsg) {
     const lower = userMsg.toLowerCase();
     if (lower.includes('estilo') || lower.includes('música') || lower.includes('proyecto')) {
@@ -1053,7 +1096,7 @@
     setTimeout(() => {
       const reply = getBotReply(text);
       addMessage(reply, false);
-    }, 600);
+    }, 500);
   }
   sendChatBtn.addEventListener('click', sendChatMessage);
   chatInput.addEventListener('keypress', (e) => {
