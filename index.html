@@ -1,534 +1,963 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Odei Lizaso | Percusionista Profesional</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  /* Modo oscuro (por defecto) */
-  :root {
-    --cream: #f0e6c8;
-    --gold: #c9a84c;
-    --gold-light: #d4b96a;
-    --dark: #0a0a0a;
-    --dark-mid: #111111;
-    --dark-surface: #1a1a1a;
-    --text-muted: rgba(240,230,200,0.5);
-    --bg-body: #0a0a0a;
-    --bg-card: #1a1a1a;
-    --border-light: rgba(240,230,200,0.1);
-    --shadow: 0 4px 18px rgba(0,0,0,0.3);
-  }
-  body.light {
-    --cream: #2c2418;
-    --gold: #b8860b;
-    --gold-light: #d4a017;
-    --dark: #f5f3ef;
-    --dark-mid: #e8e4dc;
-    --dark-surface: #ffffff;
-    --text-muted: rgba(44,36,24,0.5);
-    --bg-body: #f5f3ef;
-    --bg-card: #ffffff;
-    --border-light: rgba(44,36,24,0.1);
-    --shadow: 0 4px 18px rgba(0,0,0,0.05);
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--bg-body); color: var(--cream); font-family: 'Montserrat', sans-serif; font-weight: 300; overflow-x: hidden; transition: background 0.3s, color 0.2s; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Odei Lizaso · Percusión profesional</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* NAV */
-nav {
-position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-display: flex; align-items: center; justify-content: space-between;
-padding: 20px 48px;
-background: linear-gradient(to bottom, rgba(0,0,0,0.75), transparent);
-transition: background 0.4s, border-bottom 0.4s;
-}
-body.light nav {
-background: linear-gradient(to bottom, rgba(245,243,239,0.9), transparent);
-}
-nav.scrolled {
-background: rgba(8,8,8,0.96);
-backdrop-filter: blur(14px);
-border-bottom: 1px solid rgba(201,168,76,0.1);
-}
-body.light nav.scrolled {
-background: rgba(245,243,239,0.96);
-border-bottom: 1px solid rgba(184,134,11,0.2);
-}
+    :root {
+      --bg-primary: #faf9f7;
+      --bg-secondary: #ffffff;
+      --text-primary: #1e1b18;
+      --text-secondary: #5a4e42;
+      --accent: #c47b4e;
+      --accent-dark: #a85f32;
+      --accent-soft: #f5e6dc;
+      --border-light: #e6dfd7;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 20px 35px -10px rgba(0, 0, 0, 0.08);
+      --transition: all 0.25s ease;
+    }
 
-/* LOGO MONOGRAMA */
-.nav-logo { display: flex; align-items: center; gap: 16px; text-decoration: none; }
+    body.dark {
+      --bg-primary: #121212;
+      --bg-secondary: #1e1e1e;
+      --text-primary: #f0ede8;
+      --text-secondary: #bcb3a8;
+      --accent: #e08f5e;
+      --accent-dark: #c97646;
+      --accent-soft: #2a221c;
+      --border-light: #2c2c2c;
+      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 20px 35px -10px rgba(0, 0, 0, 0.3);
+    }
 
-.monogram-svg { width: 52px; height: 52px; flex-shrink: 0; }
-.monogram-svg ellipse, .monogram-svg line, .monogram-svg circle {
-  stroke: var(--gold);
-  fill: transparent;
-}
-body.light .monogram-svg circle { fill: var(--gold); opacity: 0.85; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.5;
+      transition: background 0.2s, color 0.2s;
+      scroll-behavior: smooth;
+    }
 
-.nav-logo-text { font-family: 'Cormorant Garamond', serif; line-height: 1.1; }
-.nav-logo-text .name-odei {
-display: block; font-size: 22px; font-style: italic; font-weight: 600;
-color: var(--cream); letter-spacing: 0.02em;
-}
-.nav-logo-text .name-lizaso {
-display: block; font-size: 14px; font-weight: 300;
-color: var(--gold); letter-spacing: 0.18em;
-}
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
 
-.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
-.nav-links a { color: var(--cream); text-decoration: none; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; opacity: 0.7; transition: opacity 0.3s; }
-.nav-links a:hover { opacity: 1; }
-.nav-cta { background: var(--gold); color: var(--dark) !important; padding: 10px 22px; font-weight: 600 !important; opacity: 1 !important; transition: background 0.3s !important; }
-.nav-cta:hover { background: var(--gold-light) !important; }
+    /* Typography */
+    h1, h2, h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
 
-/* Toggle modo oscuro/claro */
-.theme-toggle {
-  background: none; border: none; cursor: pointer; display: flex; align-items: center;
-  width: 32px; height: 32px; justify-content: center;
-  color: var(--cream); font-size: 18px; opacity: 0.8; transition: opacity 0.2s;
-}
-.theme-toggle:hover { opacity: 1; }
+    h1 {
+      font-size: 4.2rem;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
 
-/* HERO */
-.hero {
-position: relative; height: 100vh; min-height: 700px;
-display: flex; align-items: flex-end; padding-bottom: 80px; overflow: hidden;
-}
-.hero-photo {
-position: absolute; inset: 0; z-index: 0;
-background-size: cover; background-position: center 20%;
-background-repeat: no-repeat;
-}
-.hero-photo::after {
-content: '';
-position: absolute; inset: 0;
-background:
-linear-gradient(to right, rgba(0,0,0,0.88) 40%, rgba(0,0,0,0.2) 75%, rgba(0,0,0,0.5) 100%),
-linear-gradient(to top, rgba(0,0,0,0.8) 15%, transparent 55%);
-}
-body.light .hero-photo::after {
-background:
-linear-gradient(to right, rgba(245,243,239,0.85) 40%, rgba(245,243,239,0.3) 75%, rgba(245,243,239,0.5) 100%),
-linear-gradient(to top, rgba(245,243,239,0.8) 15%, transparent 55%);
-}
-.hero-content { position: relative; z-index: 2; padding-left: 80px; max-width: 620px; }
+    h2 {
+      font-size: 2.6rem;
+      margin-bottom: 1.8rem;
+      position: relative;
+      display: inline-block;
+    }
 
-.hero-label {
-font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold);
-margin-bottom: 20px; display: flex; align-items: center; gap: 16px;
-opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards;
-}
-.hero-label::before { content: ''; width: 36px; height: 1px; background: var(--gold); }
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 4px;
+    }
 
-.hero-logo {
-margin-bottom: 28px;
-opacity: 0; animation: fadeUp 0.9s ease 0.3s forwards;
-}
-.hero-logo .hero-odei {
-display: block; font-family: 'Cormorant Garamond', serif;
-font-size: clamp(72px, 9vw, 118px); font-style: italic; font-weight: 600;
-color: var(--cream); line-height: 0.9; letter-spacing: -0.01em;
-}
-.hero-logo .hero-lizaso {
-display: block; font-family: 'Cormorant Garamond', serif;
-font-size: clamp(32px, 4vw, 52px); font-weight: 300;
-color: var(--gold); letter-spacing: 0.22em; margin-top: 4px;
-}
+    .section {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--border-light);
+    }
 
-.hero-desc {
-font-size: 13px; line-height: 1.85; color: rgba(240,230,200,0.68);
-margin-bottom: 40px; max-width: 380px;
-opacity: 0; animation: fadeUp 0.8s ease 0.7s forwards;
-}
-body.light .hero-desc { color: rgba(44,36,24,0.68); }
-.hero-btns {
-display: flex; gap: 16px; flex-wrap: wrap;
-opacity: 0; animation: fadeUp 0.8s ease 0.85s forwards;
-}
-.btn-primary {
-background: var(--gold); color: var(--dark); padding: 14px 28px;
-font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
-border: none; cursor: pointer; text-decoration: none; display: inline-block;
-transition: background 0.3s, transform 0.2s;
-}
-.btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
-.btn-outline {
-background: transparent; color: var(--cream); padding: 13px 28px;
-font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
-border: 1px solid rgba(240,230,200,0.35); cursor: pointer; text-decoration: none;
-display: inline-block; transition: border-color 0.3s, transform 0.2s;
-}
-body.light .btn-outline { border-color: rgba(44,36,24,0.35); color: var(--cream); }
-.btn-outline:hover { border-color: var(--cream); transform: translateY(-1px); }
+    .section:last-of-type {
+      border-bottom: none;
+    }
 
-.hero-sidebar {
-position: absolute; right: 60px; bottom: 80px; z-index: 2; text-align: right;
-opacity: 0; animation: fadeUp 0.8s ease 1s forwards;
-}
-.hero-sidebar-label { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
-.hero-sidebar-item { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(240,230,200,0.55); margin-bottom: 4px; }
-body.light .hero-sidebar-item { color: rgba(44,36,24,0.55); }
-.hero-sidebar-item strong { color: var(--cream); font-weight: 400; }
+    /* Buttons */
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.9rem 2rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
 
-.scroll-hint {
-position: absolute; right: 24px; bottom: 50%; transform: translateY(50%); z-index: 2;
-writing-mode: vertical-rl; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
-color: var(--text-muted); display: flex; align-items: center; gap: 12px;
-opacity: 0; animation: fadeIn 1s ease 1.5s forwards;
-}
-.scroll-hint::after { content: ''; width: 1px; height: 44px; background: var(--gold); }
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 22px -10px var(--accent);
+    }
 
-/* ABOUT */
-.about { padding: 120px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1200px; margin: 0 auto; }
-.about-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
-.about-label::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
-.about-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 54px); font-weight: 300; line-height: 1.15; margin-bottom: 28px; }
-.about-title em { font-style: italic; color: var(--gold); }
-.about-text { font-size: 13px; line-height: 1.9; color: rgba(240,230,200,0.65); margin-bottom: 16px; }
-body.light .about-text { color: rgba(44,36,24,0.65); }
-.about-stats { margin-top: 48px; padding-top: 48px; border-top: 1px solid var(--border-light); }
-.stat-number { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 6px; }
-.stat-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
-.about-visual { position: relative; height: 460px; }
-.about-frame { position: absolute; inset: 0; background: linear-gradient(135deg, #1a1008, #0d0d0d); border: 1px solid rgba(201,168,76,0.12); }
-body.light .about-frame { background: linear-gradient(135deg, #e8e4dc, #f5f3ef); border-color: rgba(184,134,11,0.2); }
-.about-frame::before { content: ''; position: absolute; top: 20px; left: 20px; right: 20px; bottom: 20px; border: 1px solid rgba(201,168,76,0.06); }
-.drum-circle { position: absolute; border-radius: 50%; border: 1px solid rgba(201,168,76,0.2); }
-.dc1 { width: 260px; height: 260px; top: 50%; left: 50%; transform: translate(-50%,-50%); }
-.dc2 { width: 180px; height: 180px; top: 50%; left: 50%; transform: translate(-50%,-50%); border-color: rgba(201,168,76,0.32); }
-.dc3 { width: 100px; height: 100px; top: 50%; left: 50%; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(201,168,76,0.12), transparent); border-color: rgba(201,168,76,0.5); }
-.instrument-tag { position: absolute; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); background: rgba(0,0,0,0.8); padding: 6px 14px; border: 1px solid rgba(201,168,76,0.25); }
-body.light .instrument-tag { background: rgba(255,255,255,0.9); color: var(--gold); }
-.it1 { top: 28px; left: 28px; } .it2 { top: 28px; right: 28px; } .it3 { bottom: 28px; left: 28px; } .it4 { bottom: 28px; right: 28px; }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--accent);
+      color: var(--accent);
+      padding: 0.85rem 2rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
 
-/* SERVICES */
-.services { background: var(--dark-mid); padding: 100px 80px; }
-.section-header { text-align: center; margin-bottom: 60px; }
-.section-label { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
-.section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px, 4vw, 50px); font-weight: 300; line-height: 1.2; }
-.section-title em { font-style: italic; color: var(--gold); }
-.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; max-width: 1100px; margin: 0 auto; }
-.service-card { background: var(--dark-surface); padding: 48px 36px; border-top: 2px solid transparent; transition: border-color 0.3s, background 0.3s; cursor: pointer; }
-.service-card:hover { border-color: var(--gold); background: #1e1a12; }
-body.light .service-card:hover { background: #f0ece4; }
-.service-num { font-family: 'Cormorant Garamond', serif; font-size: 44px; color: rgba(201,168,76,0.13); font-weight: 300; line-height: 1; margin-bottom: 24px; transition: color 0.3s; }
-.service-card:hover .service-num { color: rgba(201,168,76,0.38); }
-.service-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; margin-bottom: 14px; }
-.service-desc { font-size: 12px; line-height: 1.8; color: rgba(240,230,200,0.52); margin-bottom: 24px; }
-body.light .service-desc { color: rgba(44,36,24,0.52); }
-.service-price { font-size: 11px; letter-spacing: 0.15em; color: var(--gold); }
+    .btn-outline:hover {
+      background: var(--accent);
+      color: white;
+      transform: translateY(-2px);
+    }
 
-/* CLIENTS */
-.clients { padding: 70px 80px; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
-.clients-label { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--text-muted); text-align: center; margin-bottom: 36px; }
-.clients-row { display: flex; gap: 56px; justify-content: center; align-items: center; flex-wrap: wrap; }
-.client-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 300; color: rgba(240,230,200,0.28); letter-spacing: 0.1em; transition: color 0.3s; cursor: default; }
-body.light .client-name { color: rgba(44,36,24,0.28); }
-.client-name:hover { color: rgba(240,230,200,0.65); }
-body.light .client-name:hover { color: rgba(44,36,24,0.65); }
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(16px);
+      background: rgba(var(--bg-primary-rgb, 250, 249, 247), 0.85);
+      border-bottom: 1px solid var(--border-light);
+      transition: var(--transition);
+    }
 
-/* CLASSES */
-.plan-card { background: var(--dark-surface); border: 1px solid rgba(201,168,76,0.14); padding: 40px; margin-bottom: 2px; transition: border-color 0.3s; cursor: pointer; }
-.plan-card:hover { border-color: rgba(201,168,76,0.4); }
-.plan-card.featured { border-color: var(--gold); background: linear-gradient(135deg, #1a1408, var(--dark-surface)); }
-body.light .plan-card.featured { background: linear-gradient(135deg, #e8e0d0, var(--dark-surface)); }
-.plan-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
-.plan-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; }
-.plan-price { font-family: 'Cormorant Garamond', serif; font-size: 30px; color: var(--gold); font-weight: 300; }
-.plan-price span { font-size: 12px; font-family: 'Montserrat', sans-serif; color: var(--text-muted); }
-.plan-features { list-style: none; margin-bottom: 28px; }
-.plan-features li { font-size: 12px; color: rgba(240,230,200,0.58); padding: 6px 0; border-bottom: 1px solid var(--border-light); display: flex; align-items: center; gap: 10px; }
-.plan-features li::before { content: '—'; color: var(--gold); font-size: 10px; }
+    body.dark .navbar {
+      background: rgba(18, 18, 18, 0.9);
+    }
 
-/* CONTACT */
-.contact { background: var(--dark-mid); padding: 100px 80px; text-align: center; }
-.contact-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(48px, 7vw, 92px); font-weight: 300; line-height: 1; margin-bottom: 24px; }
-.contact-title em { font-style: italic; color: var(--gold); }
-.contact-sub { font-size: 13px; color: rgba(240,230,200,0.52); margin-bottom: 48px; max-width: 400px; margin-left: auto; margin-right: auto; line-height: 1.8; }
-body.light .contact-sub { color: rgba(44,36,24,0.52); }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
 
-/* FOOTER */
-footer { padding: 36px 80px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-light); }
-.footer-logo-wrap { display: flex; align-items: center; gap: 10px; }
-.footer-logo-text { font-family: 'Cormorant Garamond', serif; }
-.footer-logo-text span { display: block; font-size: 15px; font-style: italic; font-weight: 600; color: var(--cream); }
-.footer-logo-text small { display: block; font-size: 10px; font-weight: 300; color: var(--gold); letter-spacing: 0.15em; }
-.footer-copy { font-size: 10px; letter-spacing: 0.15em; color: var(--text-muted); }
-.footer-links { display: flex; gap: 24px; }
-.footer-links a { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
-.footer-links a:hover { color: var(--cream); }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      font-family: 'Cormorant Garamond', serif;
+      letter-spacing: -0.02em;
+    }
 
-/* CHAT BUBBLE */
-.chat-bubble { position: fixed; bottom: 28px; left: 28px; z-index: 200; width: 50px; height: 50px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--shadow); transition: transform 0.2s; }
-.chat-bubble:hover { transform: scale(1.1); }
-.chat-bubble svg { width: 20px; height: 20px; fill: var(--dark); }
+    .logo span {
+      color: var(--accent);
+    }
 
-/* ANIMATIONS */
-@keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeIn { to { opacity: 1; } }
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-delay-1 { transition-delay: 0.15s; }
-.reveal-delay-2 { transition-delay: 0.3s; }
-.reveal-delay-3 { transition-delay: 0.45s; }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
 
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  nav { padding: 16px 24px; }
-  .nav-links { gap: 16px; }
-  .hero-content { padding-left: 32px; }
-  .hero-sidebar { right: 20px; bottom: 40px; }
-  .about { padding: 80px 32px; grid-template-columns: 1fr; gap: 40px; }
-  .services { padding: 80px 32px; }
-  .services-grid { grid-template-columns: 1fr; gap: 16px; }
-  .clients { padding: 50px 32px; }
-  .clients-row { gap: 28px; }
-  .plan-card { padding: 28px; }
-  .contact { padding: 80px 32px; }
-  footer { padding: 24px 32px; flex-direction: column; gap: 20px; }
-}
-@media (max-width: 600px) {
-  .nav-links { display: none; } /* Podría añadirse menú hamburguesa, pero se mantiene simple */
-  .hero-content { padding-left: 20px; }
-}
-</style>
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.3rem;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      transition: transform 0.2s;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.05);
+      color: var(--accent);
+    }
+
+    .mobile-menu {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      padding: 7rem 0 4rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--accent-soft);
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-tagline {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin: 1.2rem 0;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin: 1.5rem 0;
+    }
+
+    .hero-image {
+      background: linear-gradient(145deg, var(--accent-soft), var(--bg-secondary));
+      border-radius: 40px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-image img {
+      max-width: 100%;
+      border-radius: 28px;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      aspect-ratio: 1 / 1;
+      filter: grayscale(0.1);
+    }
+
+    /* Cards */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--bg-secondary);
+      border-radius: 28px;
+      padding: 2rem;
+      transition: var(--transition);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent-soft);
+    }
+
+    .card i {
+      font-size: 2.2rem;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 1rem 0 0.5rem;
+    }
+
+    /* FAQ */
+    .faq-item {
+      background: var(--bg-secondary);
+      border-radius: 20px;
+      margin-bottom: 1rem;
+      border: 1px solid var(--border-light);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 1.2rem 1.5rem;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .faq-question:hover {
+      background: var(--accent-soft);
+    }
+
+    .faq-answer {
+      padding: 0 1.5rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.2s;
+      color: var(--text-secondary);
+      border-top: 0px solid var(--border-light);
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding: 0 1.5rem 1.2rem 1.5rem;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .faq-question i {
+      transition: transform 0.2s;
+    }
+
+    .faq-item.open .faq-question i {
+      transform: rotate(180deg);
+    }
+
+    /* Form */
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 16px;
+      border: 1px solid var(--border-light);
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      transition: 0.2s;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(196, 123, 78, 0.2);
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-light);
+      padding: 2.5rem 0;
+      text-align: center;
+    }
+
+    .social-icons a {
+      color: var(--text-secondary);
+      margin: 0 0.8rem;
+      font-size: 1.4rem;
+      transition: color 0.2s;
+    }
+
+    .social-icons a:hover {
+      color: var(--accent);
+    }
+
+    /* Chat bubble & panel */
+    .chat-bubble {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1000;
+      width: 56px;
+      height: 56px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s;
+      color: white;
+      font-size: 1.6rem;
+    }
+
+    .chat-bubble:hover {
+      transform: scale(1.05);
+    }
+
+    .chat-panel {
+      position: fixed;
+      bottom: 90px;
+      right: 24px;
+      width: 360px;
+      max-height: 520px;
+      background: var(--bg-secondary);
+      border-radius: 24px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-light);
+      display: flex;
+      flex-direction: column;
+      z-index: 1001;
+      transform: scale(0.9);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      overflow: hidden;
+    }
+
+    .chat-panel.open {
+      transform: scale(1);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .chat-header {
+      padding: 1rem;
+      background: var(--accent);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-header h4 {
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .chat-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      max-height: 380px;
+    }
+
+    .message {
+      max-width: 85%;
+      padding: 0.7rem 1rem;
+      border-radius: 18px;
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+
+    .message.bot {
+      background: var(--accent-soft);
+      color: var(--text-primary);
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+
+    .message.user {
+      background: var(--accent);
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+
+    .chat-input-area {
+      display: flex;
+      padding: 0.8rem;
+      border-top: 1px solid var(--border-light);
+      gap: 0.5rem;
+    }
+
+    .chat-input-area input {
+      flex: 1;
+      padding: 0.7rem;
+      border-radius: 40px;
+      border: 1px solid var(--border-light);
+      background: var(--bg-primary);
+    }
+
+    .chat-send {
+      background: var(--accent);
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      h1 {
+        font-size: 3rem;
+      }
+      .nav-links {
+        display: none;
+      }
+      .mobile-menu {
+        display: block;
+      }
+      .nav-links.mobile-open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--bg-secondary);
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--border-light);
+        gap: 1rem;
+      }
+      .container {
+        padding: 0 1.2rem;
+      }
+      .section {
+        padding: 3rem 0;
+      }
+      .chat-panel {
+        width: 320px;
+        right: 16px;
+        bottom: 80px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="mainNav">
-  <a href="#" class="nav-logo">
-    <svg class="monogram-svg" viewBox="0 0 52 84" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="24" cy="36" rx="22" ry="34" stroke="currentColor" stroke-width="1.8"/>
-      <line x1="46" y1="2"  x2="46" y2="82" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-      <line x1="46" y1="82" x2="52" y2="82" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-      <circle cx="46" cy="2"  r="2.5" fill="currentColor" opacity="0.85"/>
-      <circle cx="46" cy="82" r="2.5" fill="currentColor" opacity="0.85"/>
-    </svg>
-    <div class="nav-logo-text">
-      <span class="name-odei">Odei</span>
-      <span class="name-lizaso">Lizaso</span>
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo">Odei <span>Lizaso</span></div>
+    <div class="nav-links" id="navLinks">
+      <a href="#inicio">Inicio</a>
+      <a href="#sobre">Sobre mí</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#clases">Clases</a>
+      <a href="#contacto">Contacto</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+        <i class="fas fa-moon"></i>
+      </button>
     </div>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#sobre-mi">Sobre mí</a></li>
-    <li><a href="#grabaciones">Grabaciones</a></li>
-    <li><a href="#clases">Clases</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#contacto">Contacto</a></li>
-    <li><a href="#contacto" class="nav-cta">Reservar</a></li>
-    <li><button class="theme-toggle" id="themeToggle" aria-label="Cambiar modo claro/oscuro">🌙</button></li>
-  </ul>
+    <div class="mobile-menu" id="mobileMenu">
+      <i class="fas fa-bars"></i>
+    </div>
+  </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-photo" id="heroBg"></div>
-  <div class="hero-content">
-    <p class="hero-label">Percusionista &nbsp;·&nbsp; Músico de Sesión</p>
-    <div class="hero-logo">
-      <span class="hero-odei">Odei</span>
-      <span class="hero-lizaso">Lizaso</span>
-    </div>
-    <p class="hero-desc">La percusión que hace que tu tema deje de sonar amateur. Congas, cajón, tabla y percusión étnica. Formado en La Habana. De gira con Melendi.</p>
-    <div class="hero-btns">
-      <a href="#grabaciones" class="btn-primary">Quiero percusión en mi disco</a>
-      <a href="#clases" class="btn-outline">Clases desde 125€/mes</a>
-    </div>
-  </div>
-  <div class="hero-sidebar">
-    <p class="hero-sidebar-label">Actualmente</p>
-    <p class="hero-sidebar-item"><strong>Melendi</strong> · Gira 20 Años</p>
-    <br>
-    <p class="hero-sidebar-label">Compañía</p>
-    <p class="hero-sidebar-item"><strong>Antonio Najarro</strong> · Querencia</p>
-    <br>
-    <p class="hero-sidebar-label">TV</p>
-    <p class="hero-sidebar-item"><strong>La Voz</strong> · Antena 3</p>
-  </div>
-  <span class="scroll-hint">Scroll</span>
-</section>
-
-<!-- ABOUT -->
-<section class="about" id="sobre-mi">
-  <div>
-    <p class="about-label reveal">Sobre mí</p>
-    <h2 class="about-title reveal reveal-delay-1">
-      Percusión que<br><em>te diferencia</em><br>del resto
-    </h2>
-    <p class="about-text reveal reveal-delay-2">Con más de 15 años de experiencia como músico de sesión y en directo, aporto ese elemento que convierte una producción correcta en algo extraordinario.</p>
-    <p class="about-text reveal reveal-delay-2">Formado en la mítica Escuela Nacional de Arte de La Habana, combino técnica clásica con sensibilidad contemporánea en congas, cajón, tabla y todo tipo de percusión étnica.</p>
-    <div class="about-stats reveal reveal-delay-3" style="grid-template-columns:1fr;">
+<main>
+  <!-- Hero / Inicio -->
+  <section id="inicio" class="hero">
+    <div class="container hero-grid">
       <div>
-        <div class="stat-number">15+</div>
-        <div class="stat-label">Años de experiencia</div>
-      </div>
-    </div>
-  </div>
-  <div class="about-visual reveal reveal-delay-1">
-    <div class="about-frame">
-      <div class="drum-circle dc1"></div>
-      <div class="drum-circle dc2"></div>
-      <div class="drum-circle dc3"></div>
-      <span class="instrument-tag it1">Congas</span>
-      <span class="instrument-tag it2">Cajón</span>
-      <span class="instrument-tag it3">Tabla</span>
-      <span class="instrument-tag it4">Étnica</span>
-    </div>
-  </div>
-</section>
-
-<!-- CLIENTS -->
-<div class="clients">
-  <p class="clients-label">Han confiado en él</p>
-  <div class="clients-row">
-    <span class="client-name">Melendi</span>
-    <span class="client-name">Antonio Najarro</span>
-    <span class="client-name">La Voz</span>
-    <span class="client-name">Querencia</span>
-    <span class="client-name">Antena 3</span>
-  </div>
-</div>
-
-<!-- SERVICES -->
-<section class="services" id="grabaciones">
-  <div class="section-header">
-    <p class="section-label reveal">Servicios</p>
-    <h2 class="section-title reveal reveal-delay-1">Lo que puedo<br><em>hacer por ti</em></h2>
-  </div>
-  <div class="services-grid">
-    <div class="service-card reveal">
-      <div class="service-num">01</div>
-      <h3 class="service-title">Grabaciones Online</h3>
-      <p class="service-desc">Percusión profesional grabada en mi estudio. Recibo tu pista, grabo y te entrego stems de máxima calidad en 48h.</p>
-      <p class="service-price">Desde 150€ / tema</p>
-    </div>
-    <div class="service-card reveal reveal-delay-1">
-      <div class="service-num">02</div>
-      <h3 class="service-title">Músico de Sesión</h3>
-      <p class="service-desc">Disponible para grabaciones en estudio en Madrid y Barcelona. Caché según proyecto y agenda.</p>
-      <p class="service-price">Consultar disponibilidad</p>
-    </div>
-    <div class="service-card reveal reveal-delay-2">
-      <div class="service-num">03</div>
-      <h3 class="service-title">Directo & Giras</h3>
-      <p class="service-desc">Integración en bandas en directo, giras nacionales e internacionales. Profesionalidad y entrega total en cada actuación.</p>
-      <p class="service-price">Según proyecto</p>
-    </div>
-  </div>
-</section>
-
-<!-- CLASSES -->
-<section style="padding:100px 80px;background:var(--dark);" id="clases">
-  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;">
-    <div style="position:sticky;top:120px;">
-      <p class="about-label reveal">Clases</p>
-      <h2 class="about-title reveal reveal-delay-1">Aprende con<br>quien vive<br><em>de la percusión</em></h2>
-      <p class="about-text reveal reveal-delay-2">Clases online y presenciales en Madrid. Para todos los niveles, desde principiante hasta músico profesional que quiere dar el salto.</p>
-      <p class="about-text reveal reveal-delay-2">Metodología propia basada en la escuela cubana combinada con técnicas modernas de producción musical.</p>
-    </div>
-    <div>
-      <div class="plan-card reveal">
-        <div class="plan-header">
-          <div><div class="plan-name">Plan Básico</div><div style="font-size:11px;color:var(--text-muted);margin-top:4px;">4 clases / mes</div></div>
-          <div class="plan-price">125€ <span>/ mes</span></div>
+        <div class="hero-badge">Percusionista · Músico de sesión</div>
+        <h1>Odei Lizaso</h1>
+        <div class="hero-tagline">
+          <i class="fas fa-drum"></i> La percusión que hace que tu tema deje de sonar amateur.
         </div>
-        <ul class="plan-features">
-          <li>1 clase semanal de 60 min</li>
-          <li>Material didáctico incluido</li>
-          <li>Acceso a biblioteca de ejercicios</li>
-          <li>Soporte por WhatsApp</li>
-        </ul>
-        <a href="#contacto" class="btn-outline" style="display:inline-block;font-size:10px;">Empezar ahora</a>
-      </div>
-      <div class="plan-card featured reveal reveal-delay-1">
-        <div class="plan-header">
-          <div><div class="plan-name">Plan Pro</div><div style="font-size:11px;color:var(--gold);margin-top:4px;">★ Más popular</div></div>
-          <div class="plan-price">220€ <span>/ mes</span></div>
+        <p class="hero-desc">
+          Congas, cajón, tabla y percusión étnica. <strong>Formado en La Habana</strong> · <strong>De gira con Melendi</strong>.<br>
+          Groove, autenticidad y un sonido único para tus producciones.
+        </p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a href="#servicios" class="btn-primary"><i class="fas fa-microphone-alt"></i> Quiero percusión en mi disco</a>
+          <a href="#clases" class="btn-outline"><i class="fas fa-chalkboard-user"></i> Clases 125€/mes</a>
         </div>
-        <ul class="plan-features">
-          <li>2 clases semanales de 60 min</li>
-          <li>Revisión de grabaciones propias</li>
-          <li>Plan de estudio personalizado</li>
-          <li>Acceso a masterclasses grabadas</li>
-          <li>Sesión mensual de preguntas</li>
-        </ul>
-        <a href="#contacto" class="btn-primary" style="display:inline-block;font-size:10px;">Reservar plaza</a>
+      </div>
+      <div class="hero-image">
+        <!-- Imagen placeholder (reemplazar con foto real) -->
+        <img src="https://placehold.co/600x600/e6dfd7/a85f32?text=Odei+Lizaso" alt="Odei Lizaso">
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FAQ -->
-<section style="padding:80px;background:var(--dark-mid);" id="faq">
-  <div style="max-width:680px;margin:0 auto;">
-    <div class="section-header">
-      <p class="section-label">FAQ</p>
-      <h2 class="section-title reveal">Preguntas<br><em>frecuentes</em></h2>
+  <!-- Sobre mí -->
+  <section id="sobre" class="section">
+    <div class="container">
+      <h2>Sobre mí</h2>
+      <div class="grid-2">
+        <div>
+          <p style="font-size: 1.1rem; margin-bottom: 1.2rem;">Soy Odei Lizaso, percusionista de sesión con raíces cubanas y vascas. Mi formación en <strong>La Habana</strong> me ha dado un feeling único para la rumba, el son y la percusión latina.</p>
+          <p style="margin-bottom: 1rem;">Actualmente de gira con <strong>Melendi</strong> y colaborador habitual en estudios de Madrid, Barcelona y grabaciones internacionales. Aporto color rítmico, texturas orgánicas y un groove que transforma cualquier tema.</p>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+            <span><i class="fas fa-check-circle" style="color: var(--accent);"></i> Congas, bongó, cajón</span>
+            <span><i class="fas fa-check-circle" style="color: var(--accent);"></i> Percusión étnica & tabla</span>
+            <span><i class="fas fa-check-circle" style="color: var(--accent);"></i> 200+ sesiones grabadas</span>
+          </div>
+        </div>
+        <div class="card">
+          <i class="fas fa-drumstick-bite"></i>
+          <h3>Mi filosofía</h3>
+          <p>“Cada proyecto merece un latido único. No solo toco ritmos: construyo la columna vertebral de tu canción”.</p>
+          <p style="margin-top: 1rem;">🎧 Escucha mis trabajos recientes en Spotify / Apple Music.</p>
+        </div>
+      </div>
     </div>
-    <div style="margin-top:48px;">
-      <details style="border-bottom:1px solid var(--border-light);padding-bottom:20px;margin-bottom:20px;cursor:pointer;">
-        <summary style="font-size:14px;letter-spacing:0.05em;list-style:none;display:flex;justify-content:space-between;align-items:center;">¿Cómo funciona una grabación online?<span style="color:var(--gold);font-size:20px;font-family:serif;">+</span></summary>
-        <p style="font-size:12px;color:rgba(240,230,200,0.55);line-height:1.8;margin-top:14px;">Me envías la pista de tu tema en formato WAV o AIFF, acordamos el feel y el groove que buscas, y en menos de 48h tienes tus stems de percusión listos para mezclar.</p>
-      </details>
-      <details style="border-bottom:1px solid var(--border-light);padding-bottom:20px;margin-bottom:20px;cursor:pointer;">
-        <summary style="font-size:14px;letter-spacing:0.05em;list-style:none;display:flex;justify-content:space-between;align-items:center;">¿Las clases son presenciales u online?<span style="color:var(--gold);font-size:20px;font-family:serif;">+</span></summary>
-        <p style="font-size:12px;color:rgba(240,230,200,0.55);line-height:1.8;margin-top:14px;">Ofrezco ambas modalidades. Las presenciales se realizan en mi estudio de Madrid. Las online son por videollamada con la misma calidad pedagógica.</p>
-      </details>
-      <details style="border-bottom:1px solid var(--border-light);padding-bottom:20px;cursor:pointer;">
-        <summary style="font-size:14px;letter-spacing:0.05em;list-style:none;display:flex;justify-content:space-between;align-items:center;">¿Qué instrumentos enseñas?<span style="color:var(--gold);font-size:20px;font-family:serif;">+</span></summary>
-        <p style="font-size:12px;color:rgba(240,230,200,0.55);line-height:1.8;margin-top:14px;">Principalmente congas, cajón, tabla india y percusión étnica en general. También teoría del ritmo y aplicación de la percusión en producción musical moderna.</p>
-      </details>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- CONTACT -->
-<section class="contact" id="contacto">
-  <p class="section-label reveal">Contacto</p>
-  <h2 class="contact-title reveal reveal-delay-1">Hablemos<br>de tu <em>proyecto</em></h2>
-  <p class="contact-sub reveal reveal-delay-2">¿Tienes un disco en marcha, una gira que preparar o quieres empezar con las clases? Escríbeme y te respondo en 24h.</p>
-  <div class="reveal reveal-delay-3" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-    <a href="mailto:info@odeilizaso.com" class="btn-primary">Enviar mensaje</a>
-    <a href="https://wa.me/34661967807" target="_blank" class="btn-outline">WhatsApp</a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-logo-wrap">
-    <svg width="28" height="42" viewBox="0 0 52 84" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="24" cy="36" rx="22" ry="34" stroke="currentColor" stroke-width="1.8"/>
-      <line x1="46" y1="2"  x2="46" y2="82" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-      <line x1="46" y1="82" x2="52" y2="82" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-      <circle cx="46" cy="2"  r="2.5" fill="currentColor" opacity="0.85"/>
-      <circle cx="46" cy="82" r="2.5" fill="currentColor" opacity="0.85"/>
-    </svg>
-    <div class="footer-logo-text">
-      <span>Odei</span>
-      <small>Lizaso</small>
+  <!-- Servicios / Grabaciones -->
+  <section id="servicios" class="section">
+    <div class="container">
+      <h2>Servicios profesionales</h2>
+      <div class="grid-2">
+        <div class="card">
+          <i class="fas fa-head-side-headphones"></i>
+          <h3>Grabaciones online</h3>
+          <p>Percusión profesional grabada en mi estudio. Recibo tu pista y te entrego stems en 48h. Alta calidad, listo para mezcla.</p>
+          <div class="price">Desde 150€</div>
+          <small>por tema</small>
+        </div>
+        <div class="card">
+          <i class="fas fa-tour"></i>
+          <h3>Músico de sesión & directo</h3>
+          <p>Disponible para giras, festivales y sesiones en estudio. Experiencia en grandes escenarios y versatilidad total.</p>
+          <div class="price">Consultar</div>
+          <small>según proyecto</small>
+        </div>
+        <div class="card">
+          <i class="fas fa-chalkboard-user"></i>
+          <h3>Clases de percusión</h3>
+          <p>Metodología propia basada en la escuela cubana. Niveles: iniciación (grupal reducido) e intermedio/avanzado (individual).</p>
+          <div class="price">125€/mes</div>
+          <small>plan básico · 4 clases</small>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="footer-copy">© 2026 · Madrid</div>
-  <div class="footer-links">
-    <a href="#sobre-mi">Sobre mí</a>
-    <a href="#grabaciones">Grabaciones</a>
-    <a href="#clases">Clases</a>
-    <a href="#contacto">Contacto</a>
+  </section>
+
+  <!-- Clases destacadas -->
+  <section id="clases" class="section">
+    <div class="container">
+      <h2>Planes de aprendizaje</h2>
+      <div class="grid-2">
+        <div class="card">
+          <i class="fas fa-user-graduate"></i>
+          <h3>Plan Básico</h3>
+          <p>4 clases mensuales de 60min. Ideal para mantener el ritmo y mejorar técnica.</p>
+          <ul style="margin: 1rem 0 1.5rem 1.2rem;">
+            <li>✔ Clase semanal individual</li>
+            <li>✔ Material didáctico</li>
+            <li>✔ Soporte por WhatsApp</li>
+          </ul>
+          <div class="price">125€ <span style="font-size:1rem;">/mes</span></div>
+          <a href="#contacto" class="btn-outline" style="margin-top: 1rem;">Elegir plan</a>
+        </div>
+        <div class="card" style="border-color: var(--accent);">
+          <i class="fas fa-crown"></i>
+          <h3>Plan Pro</h3>
+          <p>Dos clases semanales + seguimiento personalizado.</p>
+          <ul style="margin: 1rem 0 1.5rem 1.2rem;">
+            <li>✔ 2 clases semanales 60min</li>
+            <li>✔ Revisión de grabaciones propias</li>
+            <li>✔ Masterclasses exclusivas</li>
+          </ul>
+          <div class="price">220€ <span style="font-size:1rem;">/mes</span></div>
+          <a href="#contacto" class="btn-primary" style="margin-top: 1rem;">Reservar plaza</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container">
+      <h2>Preguntas frecuentes</h2>
+      <div style="max-width: 800px; margin-top: 2rem;">
+        <div class="faq-item">
+          <div class="faq-question">¿Cómo funciona una grabación online? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer">Me envías tu pista en WAV, acordamos el groove y en 48h recibes los stems de percusión listos para mezclar.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">¿Las clases son presenciales u online? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer">Ambas modalidades. Presencial en Madrid (estudio equipado) u online por videollamada con calidad profesional.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">¿Qué instrumentos enseñas? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer">Congas, cajón flamenco, tabla, bongó, djembe y percusión menor aplicada a pop, latin, world music.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">¿Necesito tener mi propio instrumento? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer">Para empezar con cajón o tabla puedes usar uno básico. Te recomiendo opciones económicas.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" class="section">
+    <div class="container">
+      <h2>Contacto & Reservas</h2>
+      <div class="grid-2">
+        <div>
+          <p><i class="fas fa-envelope" style="color: var(--accent);"></i> <strong>info@odeilizaso.com</strong></p>
+          <p><i class="fab fa-whatsapp" style="color: var(--accent);"></i> <strong>+34 661 967 807</strong></p>
+          <p><i class="fab fa-instagram" style="color: var(--accent);"></i> @odei.percusion</p>
+          <div style="margin-top: 2rem; background: var(--accent-soft); padding: 1.5rem; border-radius: 24px;">
+            <i class="fas fa-calendar-check" style="font-size: 1.8rem;"></i>
+            <h3 style="margin: 0.5rem 0;">¿Hablamos de tu proyecto?</h3>
+            <p>Escríbeme y te responderé en menos de 24h.</p>
+          </div>
+        </div>
+        <div>
+          <form id="contactForm">
+            <div class="form-group">
+              <input type="text" placeholder="Nombre completo" id="nombre" required>
+            </div>
+            <div class="form-group">
+              <input type="email" placeholder="Correo electrónico" id="email" required>
+            </div>
+            <div class="form-group">
+              <textarea rows="4" placeholder="Cuéntame tu proyecto o consulta..." id="mensaje" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;"><i class="fas fa-paper-plane"></i> Enviar mensaje</button>
+            <p id="formFeedback" style="margin-top: 1rem; font-size: 0.85rem;"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-spotify"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+    </div>
+    <p style="margin-top: 1.2rem;">© 2026 Odei Lizaso · Percusión con alma · Músico de sesión</p>
+    <p style="font-size: 0.75rem; margin-top: 0.5rem;">Formado en La Habana · Gira con Melendi</p>
   </div>
 </footer>
 
-<!-- CHAT BUBBLE (abre WhatsApp) -->
-<div class="chat-bubble" onclick="window.open('https://wa.me/34661967807','_blank')">
-  <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+<!-- Chat flotante -->
+<div class="chat-bubble" id="chatBubble">
+  <i class="fas fa-comment-dots"></i>
+</div>
+
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-header">
+    <h4><i class="fas fa-drum"></i> Asistente Odei</h4>
+    <button class="chat-close" id="closeChat">✕</button>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="message bot">¡Hola! Soy el asistente de Odei. ¿En qué puedo ayudarte? Puedo informarte sobre precios, clases, grabaciones o disponibilidad.</div>
+  </div>
+  <div class="chat-input-area">
+    <input type="text" id="chatInput" placeholder="Escribe tu pregunta..." autocomplete="off">
+    <button class="chat-send" id="sendChat"><i class="fas fa-paper-plane"></i></button>
+  </div>
 </div>
 
 <script>
-  // --- IMAGEN DE FONDO (base64 original) ---
-  const heroBg = document.getElementById('heroBg');
-  if (heroBg) {
-    heroBg.style.backgroundImage = "url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCASwBwgDASIAAhEBAxEB/8QAHQAAAQUBAQEBAAAAAAAAAAAAAAECAwQFBgcICf/EAEwQAAEDAwMCBQEGBAQGAQECDwEAAhEDBCEFEjFBUQYTImFxgQcUMpGhsSNCwdEVUuHwCCQzYnLxFjRDgiWSFzVEU6JUc7ImY2v/xAAbAQACAwEBAQAAAAAAAAAAAAAAAQIDBAUGB//EADgRAAICAQQBBAAEBAYDAQACAwABAhEDBBIhMUEFEyJRBhQyYXGBkaEjM0Kx0fAVweFSJENi/9oADAMBAAIRAxEAPwD5w1SvnViCwy71Q7j/fVVGsIAbPQdM90+6w4hp6z2/ZR7hEM6c5WKKpUj3OWPyst0Ld1Zo9QImQI55Tb+08n8JaZ4PSIVi1cGUQRDWwYJ4PdVa+57vw54wFCfJTKPFFMgROPcRgDv7JoO0+l2TE56JzmODoLTBGU2PXkfVXJmVonpPJdI3YMGOqZWadsgj4hMpwQc4An5KmaN7IO7fzQosRxvgqFrZiZAycpGhp4mZ4UtSnmSBzgwoj/m69lKZS4CYHcZ7psycJ3ECBPX3RwDH7Y+UwjiNOZOfeEjjicynumMEkpI6iD8oEcWNEA+qT9U5v4geSjiYnI4CPp+SgdRJGn+YGICRwEHIyMoYeIiSUr4I7+wSrsbbwRTtMfshsE9cpdv8AN9EemYjj2TtkRi7HspuiXzypKdOPVwBygP8A5TyjeY5hVs0bEkPaGRPOZTqbhOJHBAVd7zgieIwEMdHIkBRRU1yXaNUUKnmAGQeOi37PxvqFmwU2U2besFcy1oInOcH2CY5gEkDCRxT4YOJ1VbxPe30+btgjgLPr3Xnscwj3hZts8DMArRsLG/1EX7jZVLjaPVt/ZLVF0Yx2mFXbFRw4UIGTAJj6LT1XT7m0raitbVKZxC17C0qsaTWyckjlXKXBllBqRF6ywg5jhN2SM4691KXREQZJSEHJwCnTK2rIXjgjpynU2/wAGI44GElPHUhKPTbkcbnT+imytoZRIk4x1KtUTI+VVo/hJnlXaIyB+6WXZEUXLdo3AmffC6LTqfpGI7++Fi2bQ5wExjC6K0YQwHJI5JSMux9mdr1393pgNguecSueqV21qhY3HfKk8V1jU1DY134BGD1KottqjC0vmT0QoqrNL1EpLYlwiex0T3wovLgnoU1Rrg8tLst6ym8wOsIM8kmRbAeR9OyVhDeCM9k90CAG8DunMoExJPEKUyFD6ItziJgjtBQ2QMZxwVOaDWnnITHN7Z+VNkuJLY1BTLmu6hXaVzTiGxJ7rJgjg55Cc1/Un6UlasEXqrt3B6qtUYZxBhNNYl3wlc4lv+qiqGFa0RHGM4TQ0g4wR16pN52gmY+U9rhyg6+njjnHlF6zuIIa5wnoSFZuqVG5pmTDwJlZG7MgqelcbRt3QO/VHRe9PDwiGpTcyWuaZ79Fq+FqFKtdup1APUMYVV8VmbXOEgQSizqVLWu2oCRlRKVozTwQi+ixqlFtGs4BpBByqAMCMc9VoanX8y4c7GcrOcIcTCiN1yYs0VGbSEqNnrOVXLeMEfqrTXT7joUyq3a7Ej2TGecb5Img8R06pzDGHcewQ0TgcxhIRAzg8fJUlVEgcSOcdgl24g8fskaRA+kp2In24JQFAHQQW9Me3ynvB/EIKaMAR/v4UgEs+MfKiiaIYg+rP9UgBIgQB1TiIPEwkM4+OAUUFCAGCEsASTER+aRoPOAI/NPcAYnMcBAwglrpRIg9cdk0yczBlSNIgYInCggYWiJ4PQpIEySff3Sud0kx3lNmf9VKFBxiUxxmAeR7Jwad3IkpOgmRBUkMTaYyTKAPz64StaHCR/ok3Q7ugRoa8GeCRwmwQOIBU52kSCY7o2SZKLDaV4xKSMcQOimcwzJBUTh8fUJkxWqGOAMDgT8phn68cJ5JHP7JhieU6EY13vP5ppyBPKUyP6pCIwBCkRiCJziEnvj4S5BxElJBE5QQxrh6sJCOSnEZnKae8YTCiO7kZSHiUGeUh6IIEMCSkjPcpzk32BUoRiGPqkJ7pUhQKIeEnKXqkOfhMQIhCECsEnVHVBQAICEFAAhL7pEACEAIQAIQlQAIQhAAgIQgAQhAAhKkQAIQhACEIQAIQhAAhCClCAFCAhCABCEIAFCEIAEIQgAUhJ1QhACpDwlQgBQjKAhABKMIQAgQhCABHCEIAEIQgAQhCABCAUIAEdUIQAe6EIQAIQhAB1R1QhAB1QhCABCEIAEIQgAQhCAFhCQgIQAIQhAChJ1QgAQhCABCEIAEIQgA90IQgAQj9EIAEIQgAQhB5QAIQhAAhCEACEIQAdUJeqQoAEIQgA90IQgAQhCABCEIAEIQgAQhCABCEIAEIQgAQhCABCEIAEIQgAQhCABCEIAEIQgA+UJeqRAAhCEACEIQAdUIQgAQhCABHKEIAEIQgBfqjlCEACEIQAIQhACcpYQhAAhCEACEIQAIQhAAhCEACOqEIAEI/VCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQhAAhCEACEIQAIQ
+  // ----- MODO OSCURO/CLARO -----
+  const themeToggle = document.getElementById('themeToggle');
+  const body = document.body;
+  const icon = themeToggle.querySelector('i');
+  
+  function setTheme(theme) {
+    if (theme === 'dark') {
+      body.classList.add('dark');
+      icon.classList.remove('fa-moon');
+      icon.classList.add('fa-sun');
+    } else {
+      body.classList.remove('dark');
+      icon.classList.remove('fa-sun');
+      icon.classList.add('fa-moon');
+    }
+    localStorage.setItem('theme', theme);
+  }
+  
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') setTheme('dark');
+  else setTheme('light');
+  
+  themeToggle.addEventListener('click', () => {
+    if (body.classList.contains('dark')) setTheme('light');
+    else setTheme('dark');
+  });
+  
+  // ----- MOBILE MENU -----
+  const mobileMenuBtn = document.getElementById('mobileMenu');
+  const navLinks = document.getElementById('navLinks');
+  mobileMenuBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('mobile-open');
+  });
+  // Cerrar menú al hacer clic en un enlace
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('mobile-open');
+    });
+  });
+  
+  // ----- FAQ ACORDEÓN -----
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    question.addEventListener('click', () => {
+      item.classList.toggle('open');
+    });
+  });
+  
+  // ----- FORMULARIO DE CONTACTO -----
+  const contactForm = document.getElementById('contactForm');
+  const feedback = document.getElementById('formFeedback');
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const nombre = document.getElementById('nombre').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const mensaje = document.getElementById('mensaje').value.trim();
+    if (!nombre || !email || !mensaje) {
+      feedback.innerHTML = '⚠️ Por favor, completa todos los campos.';
+      feedback.style.color = '#c47b4e';
+      setTimeout(() => feedback.innerHTML = '', 3000);
+      return;
+    }
+    if (!email.includes('@')) {
+      feedback.innerHTML = '📧 Introduce un email válido.';
+      feedback.style.color = '#c47b4e';
+      setTimeout(() => feedback.innerHTML = '', 3000);
+      return;
+    }
+    feedback.innerHTML = '✅ ¡Mensaje enviado! Odei te responderá en breve.';
+    feedback.style.color = '#2c7a47';
+    contactForm.reset();
+    setTimeout(() => feedback.innerHTML = '', 4000);
+  });
+  
+  // ----- CHATBOT AUTÓNOMO (inteligencia local) -----
+  const chatBubble = document.getElementById('chatBubble');
+  const chatPanel = document.getElementById('chatPanel');
+  const closeChat = document.getElementById('closeChat');
+  const chatMessages = document.getElementById('chatMessages');
+  const chatInput = document.getElementById('chatInput');
+  const sendChat = document.getElementById('sendChat');
+  
+  function openChat() {
+    chatPanel.classList.add('open');
+  }
+  function closeChatPanel() {
+    chatPanel.classList.remove('open');
+  }
+  chatBubble.addEventListener('click', openChat);
+  closeChat.addEventListener('click', closeChatPanel);
+  
+  function addMessage(text, isUser = false) {
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+    msgDiv.textContent = text;
+    chatMessages.appendChild(msgDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+  
+  // Respuestas automáticas inteligentes
+  function getBotReply(userMessage) {
+    const msg = userMessage.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    if (msg.includes('precio') || msg.includes('cuanto cuesta') || msg.includes('costo') || msg.includes('grabacion')) {
+      return "Las grabaciones online desde 150€ por tema. Para sesiones presenciales o giras, escríbeme y te daré un presupuesto personalizado. ¿Te interesa algún servicio en concreto?";
+    } else if (msg.includes('clase') || msg.includes('aprender') || msg.includes('curso')) {
+      return "Ofrezco clases online y presenciales en Madrid. Plan básico 125€/mes (1 clase/semana) y Plan Pro 220€/mes (2 clases/semana). También tengo clases grupales para principiantes. ¿Quieres más detalles?";
+    } else if (msg.includes('disponibilidad') || msg.includes('cuando') || msg.includes('fecha')) {
+      return "Actualmente tengo disponibilidad para grabaciones y clases. Para fechas concretas de giras, consúltame con antelación. ¿Para qué fecha lo necesitas?";
+    } else if (msg.includes('whatsapp') || msg.includes('contacto') || msg.includes('telefono')) {
+      return "Puedes escribirme directamente al WhatsApp +34 661 967 807 o enviar un mensaje desde el formulario de contacto. ¡Estaré encantado de ayudarte!";
+    } else if (msg.includes('hola') || msg.includes('buenas') || msg.includes('saludo')) {
+      return "¡Hola! ¿Cómo puedo ayudarte hoy? Pregúntame sobre clases, grabaciones o disponibilidad.";
+    } else if (msg.includes('gira') || msg.includes('melendi')) {
+      return "Actualmente estoy de gira con Melendi (20 Años). También colaboro con otros artistas. Si necesitas percusión en directo, cuéntame tu proyecto.";
+    } else {
+      return "Gracias por tu mensaje. ¿Podrías especificar si te interesan clases, grabaciones online, o contratarme para un directo? Te responderé enseguida.";
+    }
+  }
+  
+  function sendMessage() {
+    const text = chatInput.value.trim();
+    if (!text) return;
+    addMessage(text, true);
+    chatInput.value = '';
+    setTimeout(() => {
+      const reply = getBotReply(text);
+      addMessage(reply, false);
+    }, 500);
+  }
+  
+  sendChat.addEventListener('click', sendMessage);
+  chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendMessage();
+  });
+  
+  // Cerrar chat si se hace clic fuera? opcional
+  document.addEventListener('click', (e) => {
+    if (!chatPanel.contains(e.target) && !chatBubble.contains(e.target) && chatPanel.classList.contains('open')) {
+      closeChatPanel();
+    }
+  });
+  
+  // Smooth scroll para enlaces internos
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId === "#" || targetId === "") return;
+      const target = document.querySelector(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+  
+  // Pequeña animación de carga
+  window.addEventListener('load', () => {
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.3s';
+    setTimeout(() => document.body.style.opacity = '1', 50);
+  });
+</script>
+</body>
+</html>
 ```
