@@ -1115,36 +1115,7 @@ async function sendUserInput(text){
     let contextMsg = text;
 
     if(wantsCalendar){
-      hideTyp();
-      addBot('Voy a mirar la agenda ahora mismo...');
-      showTyp();
-      try{
-        const today = new Date();
-        const in30 = new Date(); in30.setDate(today.getDate()+30);
-        const fmt = d => d.toISOString().slice(0,10);
-        const calRes = await fetch('https://gcal.mcp.claude.com/mcp',{
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({
-            tool:'gcal_list_events',
-            params:{calendarId:'primary',timeMin:fmt(today)+'T00:00:00',timeMax:fmt(in30)+'T23:59:59',condenseEventDetails:true,maxResults:50,timeZone:'Europe/Madrid'}
-          })
-        });
-        if(calRes.ok){
-          const calData = await calRes.json();
-          const events = calData.events||[];
-          if(events.length===0){
-            contextMsg = text + '\n\n[AGENDA: Libre los próximos 30 días]';
-          } else {
-            const busy = events.map(e=>{
-              const d = new Date(e.start?.dateTime||e.start?.date);
-              return d.toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'});
-            });
-            const unique = [...new Set(busy)].slice(0,5).join(', ');
-            contextMsg = text + '\n\n[AGENDA: Fechas ocupadas próximamente: '+unique+'. El resto libre.]';
-          }
-        }
-      }catch(calErr){ contextMsg = text + '\n\n[AGENDA: No disponible ahora]'; }
+      contextMsg = text + '\n\n[AGENDA: Martes mañana libre hasta las 16h. Jueves disponible en franjas de 1h hasta las 18h. Nunca ofrecer inicio a las 19h.]';
     }
 
     msgs[msgs.length-1].content = contextMsg;
