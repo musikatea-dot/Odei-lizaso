@@ -71,7 +71,7 @@ nav.scrolled{
   border-bottom:1px solid var(--bord);
 }
 .nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer;}
-.nav-logo svg{width:34px;height:34px;flex-shrink:0;}
+.nav-logo svg{width:30px;height:30px;flex-shrink:0;}
 .nav-logo-text .n1{
   font-family:var(--f-display);
   font-size:18px;font-style:italic;font-weight:600;
@@ -165,7 +165,20 @@ nav.scrolled{
   background-size:cover;background-position:center 20%;
   background-color:#1a0a05;
 }
-[data-theme="light"] .hero-bg{filter:brightness(.65);}
+[data-theme="light"] .hero-bg{filter:brightness(.55);}
+[data-theme="light"] .nav-logo-text .n1{color:#ffffff;}
+[data-theme="light"] .nav-logo-text .n2{color:#e8c060;}
+[data-theme="light"] nav.scrolled .nav-logo-text .n1{color:var(--t1);}
+[data-theme="light"] nav.scrolled .nav-logo-text .n2{color:var(--gold);}
+[data-theme="light"] nav:not(.scrolled) .nav-links a{color:rgba(255,255,255,0.85);}
+[data-theme="light"] nav:not(.scrolled) .nav-cta{background:var(--gold)!important;color:#fff!important;}
+[data-theme="light"] nav:not(.scrolled) .theme-btn{border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.15);color:#fff;}
+[data-theme="light"] .hero-name .first{color:#ffffff!important;}
+[data-theme="light"] .hero-name .last{color:#e8c060!important;}
+[data-theme="light"] .hero-desc{color:rgba(255,255,255,0.75)!important;}
+[data-theme="light"] .hero-badge{color:#e8c060!important;}
+[data-theme="light"] .hero-badge::before{background:#e8c060!important;}
+[data-theme="light"] .btn-out{background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.35);}
 .hero-overlay{
   position:absolute;inset:0;z-index:1;
   background:
@@ -268,6 +281,49 @@ section{padding:80px 24px;}
   font-weight:300;line-height:1.1;color:var(--t1);
 }
 .ttl em{font-style:italic;color:var(--gold);}
+
+/* ══════════════════════════════════════
+   SOBRE MÍ MEJORADO
+══════════════════════════════════════ */
+.about-blocks{display:flex;flex-direction:column;gap:0;margin-bottom:64px;}
+.about-row{
+  display:grid;grid-template-columns:80px 1fr;
+  gap:32px;align-items:start;
+  padding:36px 0;
+  border-bottom:1px solid var(--bord);
+}
+.about-row:first-child{border-top:1px solid var(--bord);}
+.about-row-num{
+  font-family:var(--f-display);
+  font-size:48px;font-weight:300;
+  color:var(--bord-g);line-height:1;
+  padding-top:4px;
+  transition:color .3s;
+}
+.about-row:hover .about-row-num{color:var(--gold);}
+.about-row-title{
+  font-family:var(--f-display);
+  font-size:22px;font-weight:400;
+  color:var(--t1);margin-bottom:10px;
+}
+.about-row-text{
+  font-size:14px;line-height:1.85;color:var(--t2);
+}
+.about-bottom{
+  padding-top:48px;border-top:1px solid var(--bord-g);
+}
+.about-stats-row{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:32px;
+}
+.about-stat-item{}
+
+@media(max-width:640px){
+  .about-row{grid-template-columns:48px 1fr;gap:16px;padding:24px 0;}
+  .about-row-num{font-size:32px;}
+  .about-stats-row{grid-template-columns:1fr 1fr;gap:20px;}
+  .about-header{margin-bottom:40px!important;}
+}
 
 /* ══════════════════════════════════════
    CLIENTS
@@ -676,12 +732,17 @@ footer{
 <!-- NAV -->
 <nav id="nav">
   <a href="#" class="nav-logo">
-    <svg viewBox="0 0 52 84" fill="none">
-      <ellipse cx="24" cy="36" rx="22" ry="34" stroke="#c9a84c" stroke-width="1.8"/>
-      <line x1="46" y1="2" x2="46" y2="82" stroke="#c9a84c" stroke-width="1.8" stroke-linecap="round"/>
-      <line x1="46" y1="82" x2="52" y2="82" stroke="#c9a84c" stroke-width="1.8" stroke-linecap="round"/>
-      <circle cx="46" cy="2" r="2.5" fill="#c9a84c"/>
-      <circle cx="46" cy="82" r="2.5" fill="#c9a84c"/>
+    <svg viewBox="0 0 64 84" fill="none">
+      <!-- O: círculo limpio, inequívoco -->
+      <circle cx="22" cy="36" r="20" stroke="#c9a84c" stroke-width="2"/>
+      <!-- Espacio y L separada -->
+      <!-- barra vertical de la L (más pequeña) -->
+      <line x1="50" y1="18" x2="50" y2="65" stroke="#c9a84c" stroke-width="2" stroke-linecap="round"/>
+      <!-- pie de la L (más corto) -->
+      <line x1="50" y1="65" x2="61" y2="65" stroke="#c9a84c" stroke-width="2" stroke-linecap="round"/>
+      <!-- nodos decorativos -->
+      <circle cx="50" cy="18" r="2" fill="#c9a84c"/>
+      <circle cx="50" cy="65" r="2" fill="#c9a84c"/>
     </svg>
     <div class="nav-logo-text">
       <span class="n1">Odei</span>
@@ -763,8 +824,8 @@ footer{
         <p class="about-p rv rv2">Con más de 15 años de experiencia como músico de sesión y en directo, aporto ese elemento que convierte una producción correcta en algo extraordinario.</p>
         <p class="about-p rv rv2">Formado en la mítica CENSEA (Cuba), combino técnica clásica con sensibilidad contemporánea. Toco siempre con las manos — es parte de mi identidad.</p>
         <div class="stat-block rv rv3">
-          <div class="stat-n">15+</div>
-          <div class="stat-l">Años de experiencia</div>
+          <div class="stat-n">20+</div>
+          <div class="stat-l">Años en escenarios</div>
         </div>
       </div>
       <div class="about-frame rv rv1">
@@ -885,12 +946,13 @@ footer{
 <!-- FOOTER -->
 <footer>
   <div style="display:flex;align-items:center;gap:9px;">
-    <svg width="22px" height="35px" viewBox="0 0 52 84" fill="none">
-      <ellipse cx="24" cy="36" rx="22" ry="34" stroke="#c9a84c" stroke-width="1.8"/>
-      <line x1="46" y1="2" x2="46" y2="82" stroke="#c9a84c" stroke-width="1.8" stroke-linecap="round"/>
-      <line x1="46" y1="82" x2="52" y2="82" stroke="#c9a84c" stroke-width="1.8" stroke-linecap="round"/>
-      <circle cx="46" cy="2" r="2.5" fill="#c9a84c"/>
-      <circle cx="46" cy="82" r="2.5" fill="#c9a84c"/>
+    <svg width="22px" height="30px" viewBox="0 0 64 84" fill="none">
+      <circle cx="22" cy="36" r="20" stroke="#c9a84c" stroke-width="2"/>
+      <!-- palo vertical — más separado de O, inclinado -->
+      <line x1="57" y1="24" x2="55" y2="60" stroke="#c9a84c" stroke-width="1.8" stroke-linecap="round"/>
+      <!-- pie horizontal — bastante largo, leve curva artesanal -->
+      <line x1="55" y1="60" x2="75" y2="62" stroke="#c9a84c" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="57" cy="24" r="1.8" fill="#c9a84c"/>
     </svg>
     <span class="ft-logo">Odei Lizaso</span>
   </div>
@@ -915,12 +977,12 @@ footer{
 <div class="chat-panel" id="chatPanel">
   <div class="chat-hd">
     <div class="chat-av">
-      <svg viewBox="0 0 52 84" fill="none">
-        <ellipse cx="24" cy="36" rx="22" ry="34" stroke="#c9a84c" stroke-width="2"/>
-        <line x1="46" y1="2" x2="46" y2="82" stroke="#c9a84c" stroke-width="2" stroke-linecap="round"/>
-        <line x1="46" y1="82" x2="52" y2="82" stroke="#c9a84c" stroke-width="2" stroke-linecap="round"/>
-        <circle cx="46" cy="2" r="3" fill="#c9a84c"/>
-        <circle cx="46" cy="82" r="3" fill="#c9a84c"/>
+      <svg viewBox="0 0 64 84" fill="none">
+        <circle cx="22" cy="36" r="20" stroke="#c9a84c" stroke-width="2"/>
+        <line x1="50" y1="10" x2="50" y2="72" stroke="#c9a84c" stroke-width="2" stroke-linecap="round"/>
+        <line x1="50" y1="72" x2="64" y2="72" stroke="#c9a84c" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="50" cy="10" r="2" fill="#c9a84c"/>
+        <circle cx="50" cy="72" r="2" fill="#c9a84c"/>
       </svg>
     </div>
     <div class="chat-hd-info">
@@ -943,8 +1005,15 @@ footer{
 // ── THEME ──
 const html = document.documentElement;
 (function(){
-  const s = localStorage.getItem('theme')||'dark';
-  html.setAttribute('data-theme',s);
+  const saved = localStorage.getItem('theme');
+  if(saved){
+    html.setAttribute('data-theme', saved);
+  } else {
+    // Auto: day 8:00-21:00 → light, otherwise → dark
+    const h = new Date().getHours();
+    const auto = (h >= 8 && h < 21) ? 'light' : 'dark';
+    html.setAttribute('data-theme', auto);
+  }
 })();
 document.getElementById('themBtn').addEventListener('click',()=>{
   const n = html.getAttribute('data-theme')==='dark'?'light':'dark';
@@ -1007,7 +1076,7 @@ function greet(){
     setTimeout(()=>addChips(['🎵 Percusión para mi disco','📚 Me interesan las clases','🎤 Contratar para directo','📅 Ver disponibilidad']),280);
   },1000);
 }
-function addBot(h){const d=document.createElement('div');d.className='msg bot';d.innerHTML=h;document.getElementById('chatMsgs').appendChild(d);scrl();}
+function addBot(h){const d=document.createElement('div');d.className='msg bot';h=h.replace(/\[EMAIL\]/g,'<a href="mailto:info@odeilizaso.com" style="color:#c9a84c;text-decoration:underline;">info@odeilizaso.com</a>');d.innerHTML=h;document.getElementById('chatMsgs').appendChild(d);scrl();}
 function addUser(t){const d=document.createElement('div');d.className='msg user';d.textContent=t;document.getElementById('chatMsgs').appendChild(d);scrl();}
 function showTyp(){const d=document.createElement('div');d.className='typing-ind';d.id='typ';d.innerHTML='<span></span><span></span><span></span>';document.getElementById('chatMsgs').appendChild(d);scrl();}
 function hideTyp(){const t=document.getElementById('typ');if(t)t.remove();}
@@ -1025,16 +1094,56 @@ async function sendMsg(){
 async function sendUserInput(text){
   addUser(text);busy=true;document.getElementById('sendBtn').disabled=true;
   msgs.push({role:'user',content:text});showTyp();
+
+  const wantsCalendar = /disponib|reserv|fecha|cuando|agenda|libre|hueco/i.test(text);
+
   try{
+    let contextMsg = text;
+
+    if(wantsCalendar){
+      hideTyp();
+      addBot('Voy a mirar la agenda ahora mismo...');
+      showTyp();
+      try{
+        const today = new Date();
+        const in30 = new Date(); in30.setDate(today.getDate()+30);
+        const fmt = d => d.toISOString().slice(0,10);
+        const calRes = await fetch('https://gcal.mcp.claude.com/mcp',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({
+            tool:'gcal_list_events',
+            params:{calendarId:'primary',timeMin:fmt(today)+'T00:00:00',timeMax:fmt(in30)+'T23:59:59',condenseEventDetails:true,maxResults:50,timeZone:'Europe/Madrid'}
+          })
+        });
+        if(calRes.ok){
+          const calData = await calRes.json();
+          const events = calData.events||[];
+          if(events.length===0){
+            contextMsg = text + '\n\n[AGENDA: Libre los próximos 30 días]';
+          } else {
+            const busy = events.map(e=>{
+              const d = new Date(e.start?.dateTime||e.start?.date);
+              return d.toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'});
+            });
+            const unique = [...new Set(busy)].slice(0,5).join(', ');
+            contextMsg = text + '\n\n[AGENDA: Fechas ocupadas próximamente: '+unique+'. El resto libre.]';
+          }
+        }
+      }catch(calErr){ contextMsg = text + '\n\n[AGENDA: No disponible ahora]'; }
+    }
+
+    msgs[msgs.length-1].content = contextMsg;
+
     const r=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
       headers:{
         'Content-Type':'application/json',
-        'x-api-key':'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',
+        'x-api-key':'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',
         'anthropic-version':'2023-06-01',
         'anthropic-dangerous-direct-browser-access':'true'
       },
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYS,messages:msgs})
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:300,system:SYS,messages:msgs})
     });
     const d=await r.json();
     const rep=d.content?.[0]?.text||'Lo siento, hubo un error.';
@@ -1042,7 +1151,7 @@ async function sendUserInput(text){
     if(/clases|aprender/i.test(text))setTimeout(()=>addChips(['125€/mes Básico','220€/mes Pro','📅 Disponibilidad']),280);
     else if(/disco|grabac|sesi/i.test(text))setTimeout(()=>addChips(['💶 Ver precios','📅 Disponibilidad','✉️ Contactar']),280);
   }catch(e){
-    hideTyp();addBot('Ups, algo falló. Escríbeme a <strong>info@odeilizaso.com</strong>');
+    hideTyp();addBot('Algo falló. Escríbeme a [EMAIL]');
   }
   busy=false;document.getElementById('sendBtn').disabled=false;
 }
