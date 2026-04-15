@@ -1,24 +1,372 @@
-/* Gestos táctiles mejorados */
-@media (pointer: coarse) {
-  .srv-card {
-    transform: scale(0.98);
-    transition: transform 0.2s;
-  }
-  
-  .srv-card:active {
-    transform: scale(0.95);
-  }
-  
-  /* Scroll horizontal para instrumentos */
-  .instruments {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  .inst-pill {
-    scroll-snap-align: start;
-    flex-shrink: 0;
-  }
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Odei Lizaso · Batería y percusión de sesión</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      transition: background-color 0.3s ease, color 0.2s ease;
+      scroll-behavior: smooth;
+    }
+    :root {
+      --bg-body: #ffffff;
+      --bg-surface: #f8fafc;
+      --text-primary: #0a0c10;
+      --text-secondary: #2d3a4a;
+      --border-light: #e2e8f0;
+      --card-shadow: 0 12px 30px rgba(0,0,0,0.05);
+      --accent: #1e3a5f;
+      --accent-soft: #3b6e9e;
+      --button-bg: #0f172a;
+      --button-text: white;
+      --footer-bg: #f1f5f9;
+    }
+    body.dark {
+      --bg-body: #0a1428;
+      --bg-surface: #0f1a2f;
+      --text-primary: #eef2ff;
+      --text-secondary: #b9c7dd;
+      --border-light: #1e2a44;
+      --card-shadow: 0 12px 30px rgba(0,0,0,0.4);
+      --accent: #5f9eff;
+      --accent-soft: #8bb5ff;
+      --button-bg: #2d3e6e;
+      --button-text: #f0f3fa;
+      --footer-bg: #071021;
+    }
+    body { background-color: var(--bg-body); color: var(--text-primary); }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+    header {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border-light);
+      position: sticky;
+      top: 0;
+      background-color: var(--bg-body);
+      z-index: 100;
+    }
+    .nav-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+    .logo h1 { font-size: 1.8rem; font-weight: 600; background: linear-gradient(135deg, var(--accent), var(--accent-soft)); background-clip: text; -webkit-background-clip: text; color: transparent; }
+    .nav-links { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
+    .nav-links a { text-decoration: none; color: var(--text-primary); font-weight: 500; transition: 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .theme-toggle {
+      background: none; border: 1px solid var(--border-light); border-radius: 40px;
+      padding: 8px 16px; cursor: pointer; font-size: 1rem;
+      display: flex; gap: 8px; align-items: center;
+      background-color: var(--bg-surface); color: var(--text-primary);
+    }
+    .btn-primary, .btn-outline { display: inline-block; padding: 12px 28px; border-radius: 40px; text-decoration: none; font-weight: 600; transition: 0.2s; cursor: pointer; border: none; }
+    .btn-primary { background-color: var(--button-bg); color: var(--button-text); }
+    .btn-outline { background: transparent; border: 1px solid var(--accent); color: var(--accent); }
+    .btn-outline:hover { background: var(--accent); color: white; }
+    section { padding: 80px 0; border-bottom: 1px solid var(--border-light); }
+    .section-title { font-size: 2.4rem; font-weight: 600; margin-bottom: 48px; letter-spacing: -0.01em; }
+    .grid-2, .grid-3, .grid-4 { display: grid; gap: 2rem; }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .card {
+      background: var(--bg-surface); border-radius: 28px; padding: 28px;
+      box-shadow: var(--card-shadow); border: 1px solid var(--border-light);
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: translateY(-5px); }
+    .step-number { font-size: 2rem; font-weight: 800; color: var(--accent); opacity: 0.5; margin-bottom: 12px; }
+    .price-tag { font-size: 2.2rem; font-weight: 700; color: var(--accent); margin: 16px 0; }
+    .hero { text-align: center; padding: 60px 0; }
+    .hero h2 { font-size: 3.2rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 24px; }
+    .hero p { font-size: 1.2rem; color: var(--text-secondary); max-width: 680px; margin: 0 auto 32px; }
+    .hero-img { max-width: 180px; border-radius: 50%; margin-bottom: 32px; border: 4px solid var(--accent); }
+    footer { padding: 48px 0; background-color: var(--footer-bg); text-align: center; border-top: 1px solid var(--border-light); }
+    @media (max-width: 768px) {
+      .container { padding: 0 24px; }
+      .section-title { font-size: 1.8rem; }
+      section { padding: 56px 0; }
+    }
+    /* Asistente flotante */
+    .chat-widget { position: fixed; bottom: 24px; right: 24px; z-index: 1000; }
+    .chat-button {
+      background: var(--accent); border-radius: 60px; padding: 14px 20px;
+      color: white; display: flex; align-items: center; gap: 10px;
+      cursor: pointer; font-weight: 600; box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+    }
+    .chat-box {
+      position: absolute; bottom: 80px; right: 0; width: 360px; max-width: 85vw;
+      background: var(--bg-surface); border: 1px solid var(--border-light);
+      border-radius: 24px; box-shadow: 0 20px 35px rgba(0,0,0,0.2);
+      display: none; flex-direction: column; overflow: hidden;
+    }
+    .chat-header { background: var(--accent); padding: 14px 16px; color: white; font-weight: bold; display: flex; justify-content: space-between; }
+    .chat-messages { height: 320px; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+    .message { padding: 8px 12px; border-radius: 18px; max-width: 85%; font-size: 0.9rem; }
+    .bot { background: var(--bg-body); border: 1px solid var(--border-light); align-self: flex-start; }
+    .user { background: var(--accent); color: white; align-self: flex-end; }
+    .chat-input-area { display: flex; border-top: 1px solid var(--border-light); padding: 10px; gap: 8px; }
+    .chat-input-area input { flex: 1; padding: 8px 12px; border: 1px solid var(--border-light); border-radius: 40px; background: var(--bg-body); color: var(--text-primary); }
+    .chat-input-area button { background: var(--accent); border: none; border-radius: 40px; padding: 8px 16px; color: white; cursor: pointer; }
+    .urgent-wa {
+      position: fixed; bottom: 100px; left: 24px; background: #25D366; color: white;
+      padding: 12px 20px; border-radius: 60px; display: flex; align-items: center;
+      gap: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 999;
+      font-weight: 600; cursor: pointer; animation: fadeInUp 0.5s ease;
+    }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 640px) { .chat-box { width: 300px; } .urgent-wa { bottom: 80px; left: 16px; padding: 8px 16px; font-size: 0.8rem; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-bar">
+      <div class="logo"><h1>Odei Lizaso</h1></div>
+      <div class="nav-links">
+        <a href="#servicios">Servicios</a><a href="#pasos">Pasos</a><a href="#precios">Precios</a><a href="#clases">Clases</a><a href="#sobre">Sobre mí</a>
+        <button id="darkModeToggle" class="theme-toggle"><i class="fas fa-moon"></i> <span>Noche</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container hero">
+      <!-- Aquí va tu foto principal: reemplaza "img/odei-hero.jpg" -->
+      <img src="img/odei-hero.jpg" alt="Odei Lizaso" class="hero-img" onerror="this.style.display='none'">
+      <h2>Percusión que <span style="color: var(--accent);">eleva</span> tu música</h2>
+      <p>Grabaciones online para productores, listas de percusión a medida y clases particulares. Sonido orgánico, comunicación directa y resultados profesionales.</p>
+      <a href="#clases" class="btn-primary"><i class="fas fa-calendar-alt"></i> Reservar clase</a>
+      <a href="#contacto" class="btn-outline"><i class="fas fa-headset"></i> Consultar grabación</a>
+    </div>
+
+    <section id="servicios">
+      <div class="container">
+        <h2 class="section-title">Servicios</h2>
+        <div class="grid-3">
+          <div class="card"><i class="fas fa-microphone-alt" style="font-size: 2rem; color: var(--accent); margin-bottom: 16px; display: inline-block;"></i><h3>Grabaciones online</h3><p>Batería acústica y percusión a distancia. Envío de stems en 24bit/48kHz sincronizados a click. Ideal para productores de todo el mundo.</p></div>
+          <div class="card"><i class="fas fa-drum" style="font-size: 2rem; color: var(--accent); margin-bottom: 16px;"></i><h3>Listas de percusión</h3><p>Desde shakers y cajón hasta capas cinemáticas. Construyo la atmósfera rítmica que tu producción necesita.</p></div>
+          <div class="card"><i class="fas fa-chart-line" style="font-size: 2rem; color: var(--accent); margin-bottom: 16px;"></i><h3>Sin costes de estudio</h3><p>Ahorra desplazamientos y alquiler de sala. Tarifas flexibles para proyectos independientes y grandes producciones.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pasos" style="background: var(--bg-surface);">
+      <div class="container">
+        <h2 class="section-title">Cómo trabajamos</h2>
+        <div class="grid-4">
+          <div class="card"><div class="step-number">01</div><h3>Envías tu canción</h3><p>Sube tu maqueta, BPM y referencias rítmicas.</p></div>
+          <div class="card"><div class="step-number">02</div><h3>Presupuesto claro</h3><p>Recibes una demo preliminar y el coste exacto según número de pistas y revisiones.</p></div>
+          <div class="card"><div class="step-number">03</div><h3>Grabación profesional</h3><p>Registro en mi estudio con micrófonos de alta gama.</p></div>
+          <div class="card"><div class="step-number">04</div><h3>Entrega final</h3><p>Stems sincronizados, listos para mezcla. Derechos 100% libres.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="precios">
+      <div class="container">
+        <h2 class="section-title">Tarifas dinámicas</h2>
+        <div class="grid-2">
+          <div class="card">
+            <i class="fas fa-euro-sign" style="font-size: 1.8rem; color: var(--accent);"></i>
+            <h3>Fórmula inteligente</h3>
+            <p>El precio se adapta al número de capas de percusión y revisiones.</p>
+            <div class="price-tag">Desde 150€</div>
+            <ul style="margin: 16px 0 0 20px; line-height: 1.6;">
+              <li>🔹 <strong>Proyectos alternativos</strong> → 150€ (hasta 4 pistas, 1 ajuste)</li>
+              <li>🔹 <strong>Producciones potentes</strong> → 250€ (hasta 8 pistas, 2 revisiones)</li>
+              <li>🔹 <strong>Pista extra</strong> +25€ (después de 8)</li>
+              <li>🔹 <strong>Revisión adicional</strong> +35€</li>
+            </ul>
+            <a href="#contacto" class="btn-primary" style="margin-top: 20px; width: 100%; text-align: center;">Solicitar presupuesto</a>
+          </div>
+          <div class="card">
+            <i class="fas fa-music"></i>
+            <h3>¿No sabes cuántas capas necesitas?</h3>
+            <p>Escríbeme al asistente o por email y te asesoro sin compromiso. Muchos proyectos encajan en el rango de 150-250€.</p>
+            <p style="margin-top: 16px;"><i class="fab fa-paypal"></i> Pago seguro con PayPal. 50% de anticipo para grabaciones.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="clases" style="background: var(--bg-surface);">
+      <div class="container">
+        <h2 class="section-title">Clases individuales</h2>
+        <div class="grid-2">
+          <div class="card">
+            <i class="fas fa-laptop-house" style="font-size: 2rem; color: var(--accent);"></i>
+            <h3>Online · Mundial</h3>
+            <p>Clases por videollamada. Enfoque en groove, lectura o producción rítmica.</p>
+            <div class="price-tag">45€ / 60min</div>
+            <p><strong>Pack 4 clases (horario fijo)</strong> → 125€</p>
+            <a href="#" class="btn-primary" id="reservaOnlineBtn">Reservar online →</a>
+          </div>
+          <div class="card">
+            <i class="fas fa-map-marker-alt" style="font-size: 2rem; color: var(--accent);"></i>
+            <h3>Presencial · Madrid</h3>
+            <p>En estudio céntrico o desplazamiento (consulta). Técnica, interpretación y preparación para grabación.</p>
+            <div class="price-tag">45€ / 60min</div>
+            <p><strong>Pack 4 clases (horario fijo)</strong> → 125€</p>
+            <a href="#" class="btn-primary" id="reservaPresencialBtn">Reservar presencial →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre">
+      <div class="container">
+        <h2 class="section-title">Sobre Odei</h2>
+        <div class="grid-2">
+          <div>
+            <p style="font-size: 1.2rem; line-height: 1.5; margin-bottom: 24px;">Batería y percusionista con más de 12 años de experiencia en estudio y escenarios. He colaborado con artistas de España, EE. UU. y Europa, grabando desde folk alternativo hasta electrónica orgánica.</p>
+            <p>Mi filosofía: entender la canción y servirla con el groove justo. Cada proyecto es único, por eso ofrezco un trato cercano, directo y sin tecnicismos innecesarios. Además de las grabaciones online, mantengo una intensa actividad como músico de directo en Madrid y giras internacionales.</p>
+            <p style="margin-top: 20px;"><i class="fas fa-check-circle" style="color: var(--accent);"></i> Estudio propio con equipamiento profesional (RME, Neumann, Shure).</p>
+            <p><i class="fas fa-check-circle" style="color: var(--accent);"></i> Especialista en capas de percusión world music, batería híbrida y texturas rítmicas.</p>
+          </div>
+          <div class="card" style="text-align: center;">
+            <!-- Tu foto de perfil / estudio -->
+            <img src="img/odei-about.jpg" alt="Odei tocando" style="width: 100%; border-radius: 24px; margin-bottom: 16px;" onerror="this.style.display='none'">
+            <h3>“Sonido auténtico para mentes inquietas”</h3>
+            <p>Más de 80 discos grabados como sesionista.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="container" style="text-align: center;">
+        <h2 class="section-title">Hablemos</h2>
+        <div class="card" style="max-width: 680px; margin: 0 auto;">
+          <p style="font-size: 1.1rem;">¿Tienes un proyecto? Escríbeme y te responderé en menos de 24h.</p>
+          <div style="display: flex; gap: 16px; justify-content: center; margin: 32px 0; flex-wrap: wrap;">
+            <a href="mailto:odei@lizaso.com" class="btn-primary"><i class="far fa-envelope"></i> odei@lizaso.com</a>
+            <a href="#" id="whatsappContactBtn" class="btn-outline"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          </div>
+          <!-- Formulario para enviar canción (real con FormSubmit) -->
+          <form action="https://formsubmit.co/TU_EMAIL_AQUI" method="POST" enctype="multipart/form-data" style="margin-top: 32px; text-align: left;">
+            <h3><i class="fas fa-upload"></i> Envíame tu canción</h3>
+            <input type="text" name="nombre" placeholder="Tu nombre" required style="width: 100%; padding: 12px; margin: 8px 0; border-radius: 40px; border: 1px solid var(--border-light); background: var(--bg-body); color: var(--text-primary);">
+            <input type="email" name="email" placeholder="Tu email" required style="width: 100%; padding: 12px; margin: 8px 0; border-radius: 40px; border: 1px solid var(--border-light); background: var(--bg-body); color: var(--text-primary);">
+            <input type="file" name="cancion" accept="audio/*" style="width: 100%; padding: 8px; margin: 8px 0;">
+            <textarea name="mensaje" placeholder="Dime BPM, referencias o dudas..." rows="3" style="width: 100%; padding: 12px; border-radius: 20px; border: 1px solid var(--border-light); background: var(--bg-body); color: var(--text-primary);"></textarea>
+            <button type="submit" class="btn-primary" style="width: 100%; margin-top: 16px;">Enviar canción →</button>
+            <input type="hidden" name="_captcha" value="false">
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Odei Lizaso · Grabaciones online · Clases de percusión Madrid</p>
+      <p style="margin-top: 12px;"><i class="fas fa-sun"></i> Modo día / <i class="fas fa-moon"></i> noche azulado</p>
+    </div>
+  </footer>
+
+  <!-- Asistente flotante REAL -->
+  <div class="chat-widget">
+    <div class="chat-button" id="chatToggle"><i class="fas fa-comment-dots"></i> Asistente</div>
+    <div id="chatBox" class="chat-box">
+      <div class="chat-header"><span>🤖 Asistente Odei · Pregunta lo que necesites</span><span id="closeChat" style="cursor:pointer;">✕</span></div>
+      <div id="chatMessages" class="chat-messages">
+        <div class="message bot">¡Hola! Soy tu asistente real. Puedo:<br>✅ Mostrarte horarios libres (Cal.com)<br>✅ Ayudarte a reservar clase o grabación<br>✅ Enviar tu canción por el formulario<br>✅ Responder dudas sobre precios<br><br>Escribe "horarios", "precios", "enviar canción" o "whatsapp".</div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chatInput" placeholder="Escribe tu mensaje...">
+        <button id="sendMsg"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- WhatsApp urgente (aparece a los 2 segundos) -->
+  <div id="urgentWA" class="urgent-wa" style="display: none;">
+    <i class="fab fa-whatsapp fa-2x"></i> <span>¿Urgente? Escríbeme directamente +34 661967807</span>
+  </div>
+
+  <script>
+    // --- MODO OSCURO ---
+    const toggleBtn = document.getElementById('darkModeToggle');
+    const body = document.body;
+    function updateToggle(isDark) {
+      const icon = toggleBtn.querySelector('i');
+      const span = toggleBtn.querySelector('span');
+      if(isDark) { icon.className = 'fas fa-sun'; span.innerText = ' Día'; }
+      else { icon.className = 'fas fa-moon'; span.innerText = ' Noche'; }
+    }
+    if(localStorage.getItem('theme') === 'dark') { body.classList.add('dark'); updateToggle(true); }
+    else if(localStorage.getItem('theme') === 'light') { body.classList.remove('dark'); updateToggle(false); }
+    else if(window.matchMedia('(prefers-color-scheme: dark)').matches) { body.classList.add('dark'); updateToggle(true); }
+    toggleBtn.addEventListener('click', () => {
+      const isDark = body.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateToggle(isDark);
+    });
+
+    // --- ASISTENTE REAL (con acciones) ---
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const sendBtn = document.getElementById('sendMsg');
+    const chatBox = document.getElementById('chatBox');
+    const chatToggle = document.getElementById('chatToggle');
+    const closeChat = document.getElementById('closeChat');
+
+    chatToggle.onclick = () => { chatBox.style.display = chatBox.style.display === 'flex' ? 'none' : 'flex'; };
+    closeChat.onclick = () => { chatBox.style.display = 'none'; };
+    sendBtn.onclick = sendMessage;
+    chatInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') sendMessage(); });
+
+    function addMessage(text, isUser) {
+      const div = document.createElement('div');
+      div.className = `message ${isUser ? 'user' : 'bot'}`;
+      div.innerHTML = text;
+      chatMessages.appendChild(div);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function sendMessage() {
+      const msg = chatInput.value.trim();
+      if(!msg) return;
+      addMessage(msg, true);
+      chatInput.value = '';
+      const lower = msg.toLowerCase();
+      let respuesta = '';
+      // Enlaces reales (el usuario debe reemplazar los enlaces de Cal.com)
+      const calComLink = "https://cal.com/odeilizaso/clase"; // <--- CAMBIA ESTO POR TU ENLACE REAL DE CAL.COM
+      if(lower.includes('horario') || lower.includes('hueco') || lower.includes('disponibilidad')) {
+        respuesta = `📅 Puedes ver mis horarios reales y reservar directamente aquí: <a href="${calComLink}" target="_blank" style="color:var(--accent)">${calComLink}</a>. Está sincronizado con mi Google Calendar.`;
+      } else if(lower.includes('reservar clase')) {
+        respuesta = `🎓 Perfecto. Usa este enlace para elegir día y hora: <a href="${calComLink}" target="_blank" style="color:var(--accent)">Reservar clase</a>. Una vez reserves, recibirás confirmación y el enlace de pago PayPal.`;
+      } else if(lower.includes('precio') || lower.includes('tarifa')) {
+        respuesta = `💰 Grabación: desde 150€ (proyectos alternativos) hasta 250€ (8 pistas + 2 revisiones). Clases: 45€ suelta / 125€ pack 4 clases. ¿Necesitas presupuesto personalizado? Escríbeme por email.`;
+      } else if(lower.includes('enviar canción')) {
+        respuesta = `🎵 Para enviarme tu canción, usa el formulario que está en la sección "Hablemos". Sube tu archivo y te responderé en menos de 24h.`;
+      } else if(lower.includes('whatsapp')) {
+        respuesta = `⚠️ Para urgencias, escríbeme al WhatsApp +34 661967807 (el botón verde flotante aparecerá en breve).`;
+      } else {
+        respuesta = `Puedo ayudarte con: "horarios", "reservar clase", "precios", "enviar canción", "whatsapp". ¿Qué necesitas?`;
+      }
+      addMessage(respuesta, false);
+    }
+
+    // Botones de reserva que abren Cal.com
+    const reservaOnline = document.getElementById('reservaOnlineBtn');
+    const reservaPresencial = document.getElementById('reservaPresencialBtn');
+    const calLink = "https://cal.com/odeilizaso/clase"; // CAMBIA TAMBIÉN AQUÍ
+    if(reservaOnline) reservaOnline.href = calLink;
+    if(reservaPresencial) reservaPresencial.href = calLink;
+
+    // WhatsApp urgente a los 2 segundos
+    setTimeout(() => {
+      const waDiv = document.getElementById('urgentWA');
+      waDiv.style.display = 'flex';
+      waDiv.onclick = () => { window.open('https://wa.me/34661967807', '_blank'); };
+    }, 2000);
+
+    // Botón de contacto WhatsApp en sección
+    const waContact = document.getElementById('whatsappContactBtn');
+    if(waContact) waContact.onclick = (e) => { e.preventDefault(); window.open('https://wa.me/34661967807', '_blank'); };
+  </script>
+</body>
+</html>
